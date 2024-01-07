@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import RootLayout from "../layouts/index.astro";
 
 const LINKS = [
   {
@@ -25,41 +26,8 @@ const LINKS = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="author" content="Vinit Sarvade" />
-    <meta name="description" content="Vinit Sarvade's Portfolio" />
-    <meta name="keywords" content="Vinit Sarvade, Portfolio" />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <title>Vinit Sarvade</title>
-  </head>
-  <body class="flex flex-col min-h-dvh justify-center items-center gap-3 p-5">
+<RootLayout>
+  <main class="flex flex-col min-h-dvh justify-center items-center gap-3 p-5">
     <h1 class="text-4xl sm:text-6xl font-semibold text-center tracking-wide">
       Hi! I'm Vinit Sarvade
     </h1>
@@ -85,5 +53,5 @@ const LINKS = [
         ))
       }
     </div>
-  </body>
-</html>
+  </main>
+</RootLayout>
