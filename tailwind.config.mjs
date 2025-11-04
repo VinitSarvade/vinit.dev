@@ -5,7 +5,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily:{
-				sans: ['Fira Sans', 'sans-serif'],
+				sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 			}
 		},
 	},

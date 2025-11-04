@@ -37,11 +37,37 @@ const profile = {
   about:
     "Full-stack engineer with over 8 years of experience designing and developing scalable web and mobile applications across SaaS, e-commerce, and climate tech sectors. Demonstrated proficiency in React, Next.js, Node.js, and Golang, with deep expertise in microservices, distributed systems, and cloud platforms such as AWS, Docker, and Kubernetes. Currently leading AI-driven initiatives at Unibloom, where I build simulation engines and conversational chatbots that help sustainability professionals reach decisions faster. Experienced in leading teams, modernizing legacy infrastructures, and optimizing system performance, while mentoring engineers and driving best practices in software development.",
   skills: {
-    "Frontend": ["React", "React Native", "Next.js", "Vue.js", "TypeScript", "TailwindCSS", "Redux"],
-    "Backend": ["Node.js", "NestJS", "Golang", "GraphQL", "Prisma", "SSR"],
-    "Database": ["PostgreSQL", "MongoDB", "Redis"],
-    "DevOps & Cloud": ["Docker", "Kubernetes", "AWS"],
-    "AI & Tools": ["AI Agents", "Microservices", "SEO"],
+    "Frontend": [
+      { name: "React", icon: "react" },
+      { name: "React Native", icon: "react" },
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "Vue.js", icon: "vuedotjs" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "TailwindCSS", icon: "tailwindcss" },
+      { name: "Redux", icon: "redux" },
+    ],
+    "Backend": [
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "NestJS", icon: "nestjs" },
+      { name: "Golang", icon: "go" },
+      { name: "GraphQL", icon: "graphql" },
+      { name: "Prisma", icon: "prisma" },
+    ],
+    "Database": [
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "MongoDB", icon: "mongodb" },
+      { name: "Redis", icon: "redis" },
+    ],
+    "DevOps & Cloud": [
+      { name: "Docker", icon: "docker" },
+      { name: "Kubernetes", icon: "kubernetes" },
+      { name: "AWS", icon: "amazonwebservices" },
+    ],
+    "Other": [
+      { name: "Git", icon: "git" },
+      { name: "Jest", icon: "jest" },
+      { name: "Cypress", icon: "cypress" },
+    ],
   },
 };
 
@@ -214,7 +240,7 @@ const structuredData = {
     "@type": "Organization",
     name: "Educational Institution",
   },
-  knowsAbout: Object.values(profile.skills).flat(),
+  knowsAbout: Object.values(profile.skills).flat().map(s => s.name),
 };
 ---
 
@@ -238,16 +264,40 @@ const structuredData = {
         </svg>
       </button>
       <!-- Header Section -->
-      <header class="text-center space-y-4">
-        <h1 class="text-4xl sm:text-6xl font-semibold tracking-wide">
+      <header class="text-center space-y-5">
+        {/* Social Links at Top */}
+        <nav aria-label="Social media links" class="flex flex-row justify-center items-center gap-6">
+          {
+            LINKS.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                title={link.name}
+                aria-label={link.name}
+                class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+              >
+                <Image
+                  src={link.icon}
+                  alt={`${link.name} icon`}
+                  width="24"
+                  height="24"
+                  densities={[1, 2, 3]}
+                />
+              </a>
+            ))
+          }
+        </nav>
+
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight">
           {profile.name}
         </h1>
-        <p class="text-xl sm:text-2xl">
+        <p class="text-xl sm:text-2xl font-medium text-gray-700 dark:text-gray-300">
           <span>{profile.title}</span>
           <span class="hidden sm:inline">&nbsp;&middot;&nbsp;</span>
           <span class="block sm:inline">{profile.experience}</span>
         </p>
-        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400">
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-normal">
           {profile.headline}
         </p>
       </header>
@@ -255,7 +305,7 @@ const structuredData = {
       <!-- About Section -->
       <section class="space-y-3">
         <h2 class="text-2xl font-semibold">About</h2>
-        <p class="text-lg leading-relaxed">{profile.about}</p>
+        <p class="text-base leading-relaxed font-normal text-gray-700 dark:text-gray-300">{profile.about}</p>
       </section>
 
       <!-- Experience Section -->
@@ -282,7 +332,7 @@ const structuredData = {
 
                   <ul class="space-y-2 mb-4">
                     {exp.highlights.map((highlight) => (
-                      <li class="flex items-start text-sm text-gray-700 dark:text-gray-300">
+                      <li class="flex items-start text-sm font-normal text-gray-700 dark:text-gray-300">
                         <span class="text-gray-400 mr-2 mt-1">▹</span>
                         <span class="leading-relaxed">{highlight}</span>
                       </li>
@@ -290,8 +340,8 @@ const structuredData = {
                   </ul>
 
                   <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                      <span class="font-semibold">Technologies:</span> {exp.technologies}
+                    <p class="text-xs font-normal text-gray-600 dark:text-gray-400">
+                      <span class="font-medium">Technologies:</span> {exp.technologies}
                     </p>
                   </div>
                 </div>
@@ -311,10 +361,20 @@ const structuredData = {
                 <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3 pb-2 border-b border-gray-200 dark:border-gray-700">
                   {category}
                 </h3>
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-3">
                   {skillList.map((skill) => (
-                    <span class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-                      {skill}
+                    <span class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                      <img
+                        src={`https://cdn.simpleicons.org/${skill.icon}`}
+                        alt={`${skill.name} logo`}
+                        class="w-4 h-4 dark:hidden"
+                      />
+                      <img
+                        src={`https://cdn.simpleicons.org/${skill.icon}/ffffff`}
+                        alt={`${skill.name} logo`}
+                        class="w-4 h-4 hidden dark:inline"
+                      />
+                      {skill.name}
                     </span>
                   ))}
                 </div>
@@ -348,16 +408,16 @@ const structuredData = {
                     </svg>
                   </div>
 
-                  <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
+                  <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
                     {project.name}
                   </h3>
 
-                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                  <p class="text-sm font-normal text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                     {project.description}
                   </p>
 
                   <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
-                    <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
+                    <p class="text-xs font-normal text-gray-500 dark:text-gray-400">
                       {project.tech}
                     </p>
                   </div>
@@ -371,33 +431,16 @@ const structuredData = {
       <!-- Contact Section -->
       <section class="space-y-3">
         <h2 class="text-2xl font-semibold">Contact</h2>
-        <p class="text-lg">
+        <p class="text-lg font-normal">
           <a
             href={`mailto:${profile.email}`}
-            class="hover:underline"
+            class="hover:underline text-gray-700 dark:text-gray-300"
             rel="noreferrer"
           >
             {profile.email}
           </a>
         </p>
       </section>
-
-      <!-- Social Links -->
-      <nav aria-label="Social media links" class="flex flex-row justify-center items-center gap-10 pt-4">
-        {
-          LINKS.map((link) => (
-            <a href={link.url} target="_blank" rel="noreferrer noopener" title={link.name} aria-label={link.name}>
-              <Image
-                src={link.icon}
-                alt={`${link.name} icon`}
-                width="24"
-                height="24"
-                densities={[1, 2, 3]}
-              />
-            </a>
-          ))
-        }
-      </nav>
     </article>
   </main>
 
