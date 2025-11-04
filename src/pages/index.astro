@@ -5,6 +5,7 @@ import About from "../components/About.astro";
 import Experience from "../components/Experience.astro";
 import Skills from "../components/Skills.astro";
 import Projects from "../components/Projects.astro";
+import Education from "../components/Education.astro";
 import Contact from "../components/Contact.astro";
 import DarkModeToggle from "../components/DarkModeToggle.astro";
 import ScrollAnimations from "../components/ScrollAnimations.astro";
@@ -49,31 +50,54 @@ const profile = {
       { name: "React Native", icon: "react" },
       { name: "Next.js", icon: "nextdotjs" },
       { name: "Vue.js", icon: "vuedotjs" },
+      { name: "Nuxt.js", icon: "nuxtdotjs" },
       { name: "TypeScript", icon: "typescript" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "Angular", icon: "angular" },
       { name: "TailwindCSS", icon: "tailwindcss" },
+      { name: "styled-components", icon: "styledcomponents" },
+      { name: "HTML5", icon: "html5" },
+      { name: "CSS3", icon: "css3" },
+      { name: "Sass", icon: "sass" },
+    ],
+    "State Management": [
       { name: "Redux", icon: "redux" },
+      { name: "Redux-Saga", icon: "reduxsaga" },
+      { name: "Zustand", icon: "zustand" },
     ],
     Backend: [
       { name: "Node.js", icon: "nodedotjs" },
       { name: "NestJS", icon: "nestjs" },
       { name: "Golang", icon: "go" },
+      { name: "Ruby on Rails", icon: "rubyonrails" },
+      { name: "PHP", icon: "php" },
       { name: "GraphQL", icon: "graphql" },
       { name: "Prisma", icon: "prisma" },
     ],
-    Database: [
+    "Database & Cache": [
       { name: "PostgreSQL", icon: "postgresql" },
       { name: "MongoDB", icon: "mongodb" },
+      { name: "MySQL", icon: "mysql" },
       { name: "Redis", icon: "redis" },
+      { name: "Supabase", icon: "supabase" },
     ],
     "DevOps & Cloud": [
       { name: "Docker", icon: "docker" },
       { name: "Kubernetes", icon: "kubernetes" },
       { name: "AWS", icon: "amazonwebservices" },
+      { name: "Vercel", icon: "vercel" },
+      { name: "RabbitMQ", icon: "rabbitmq" },
     ],
-    Other: [
-      { name: "Git", icon: "git" },
+    Testing: [
       { name: "Jest", icon: "jest" },
       { name: "Cypress", icon: "cypress" },
+      { name: "Vitest", icon: "vitest" },
+      { name: "Testing Library", icon: "testinglibrary" },
+    ],
+    "Tools & Other": [
+      { name: "Git", icon: "git" },
+      { name: "NX", icon: "nx" },
+      { name: "OpenAI", icon: "openai" },
     ],
   },
 };
@@ -236,6 +260,17 @@ const experiences = [
   },
 ];
 
+const education = [
+  {
+    institution: "Visvesvaraya Technological University",
+    degree: "Bachelor of Engineering",
+    field: "Computer Science and Engineering",
+    location: "Karnataka, India",
+    date: "2011 - 2015",
+    grade: "First Class with Distinction",
+  },
+];
+
 // Structured Data for SEO
 const structuredData = {
   "@context": "https://schema.org",
@@ -270,7 +305,7 @@ const structuredData = {
   <ScrollAnimations />
 
   <main class="flex flex-col min-h-dvh justify-center items-center p-5 sm:p-10">
-    <article class="max-w-3xl w-full space-y-8">
+    <article class="max-w-3xl w-full space-y-12">
       <!-- Dark Mode Toggle -->
       <DarkModeToggle />
 
@@ -294,6 +329,9 @@ const structuredData = {
 
       <!-- Projects Section -->
       <Projects projects={projects} />
+
+      <!-- Education Section -->
+      <Education education={education} />
 
       <!-- Contact Section -->
       <Contact email={profile.email} />

@@ -13,6 +13,7 @@ interface Props {
 }
 
 const { experiences } = Astro.props;
+const showViewMore = experiences.length > 3;
 ---
 
 <section class="space-y-5 animate-section">
@@ -21,11 +22,11 @@ const { experiences } = Astro.props;
   >
     Experience
   </h2>
-  <div class="space-y-4">
+  <div id="experience-list" class="space-y-4">
     {
       experiences.map((exp, index) => (
         <article
-          class="timeline-item relative pl-8 pb-8 border-l-2 border-cyan-500 dark:border-cyan-400 last:pb-0"
+          class={`timeline-item relative pl-8 pb-8 border-l-2 border-cyan-500 dark:border-cyan-400 last:pb-0 ${index >= 3 ? "experience-hidden" : ""}`}
           style={`animation-delay: ${index * 0.1}s`}
         >
           {/* Timeline dot */}
@@ -69,4 +70,45 @@ const { experiences } = Astro.props;
       ))
     }
   </div>
+
+  {
+    showViewMore && (
+      <div class="flex justify-center pt-3">
+        <button
+          id="view-more-btn"
+          class="px-6 py-2 text-sm font-medium text-cyan-600 dark:text-cyan-400 bg-white dark:bg-slate-900 border-2 border-cyan-500 dark:border-cyan-400 rounded-lg hover:bg-cyan-50 dark:hover:bg-slate-800 transition-all duration-300 hover:shadow-lg"
+        >
+          View More
+        </button>
+      </div>
+    )
+  }
 </section>
+
+<style>
+  .experience-hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const viewMoreBtn = document.getElementById("view-more-btn");
+  const hiddenExperiences = document.querySelectorAll(".experience-hidden");
+  let isExpanded = false;
+
+  viewMoreBtn?.addEventListener("click", () => {
+    isExpanded = !isExpanded;
+
+    hiddenExperiences.forEach((exp) => {
+      if (isExpanded) {
+        exp.classList.remove("experience-hidden");
+      } else {
+        exp.classList.add("experience-hidden");
+      }
+    });
+
+    if (viewMoreBtn) {
+      viewMoreBtn.textContent = isExpanded ? "View Less" : "View More";
+    }
+  });
+</script>

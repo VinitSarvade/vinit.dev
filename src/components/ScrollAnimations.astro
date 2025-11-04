@@ -64,46 +64,46 @@
 
   /* Sections fade in as they enter viewport */
   .animate-section {
-    animation: fadeInUp linear both;
+    animation: fadeInUp ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 30%;
+    animation-range: entry 0% entry 50%;
   }
 
-  /* Timeline items slide in from left */
+  /* Timeline items fade in from bottom */
   .timeline-item {
-    animation: slideInLeft linear both;
+    animation: fadeInUp ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 40%;
+    animation-range: entry 0% entry 60%;
   }
 
   /* Timeline dots scale in and pulse continuously */
   .timeline-dot {
     animation:
-      scaleIn linear both,
+      scaleIn ease-out both,
       pulse 2s ease-in-out infinite;
     animation-timeline: view();
-    animation-range: entry 0% entry 30%;
+    animation-range: entry 0% entry 50%;
   }
 
   /* Skill cards fade in and scale */
   .skill-card {
-    animation: reveal linear both;
+    animation: reveal ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 35%;
+    animation-range: entry 0% entry 55%;
   }
 
   /* Skill badges scale in with stagger effect (handled via inline animation-delay) */
   .skill-badge {
-    animation: scaleIn linear both;
+    animation: scaleIn ease-out both;
     animation-timeline: view();
-    animation-range: entry 10% entry 40%;
+    animation-range: entry 10% entry 60%;
   }
 
   /* Project cards reveal with slight scale */
   .project-card {
-    animation: reveal linear both;
+    animation: reveal ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 35%;
+    animation-range: entry 0% entry 55%;
   }
 
   /* Smooth transitions on interactive elements */
