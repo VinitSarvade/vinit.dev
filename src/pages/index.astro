@@ -36,30 +36,13 @@ const profile = {
   phone: "+91 8792369896",
   about:
     "Full-stack engineer with over 8 years of experience designing and developing scalable web and mobile applications across SaaS, e-commerce, and climate tech sectors. Demonstrated proficiency in React, Next.js, Node.js, and Golang, with deep expertise in microservices, distributed systems, and cloud platforms such as AWS, Docker, and Kubernetes. Currently leading AI-driven initiatives at Unibloom, where I build simulation engines and conversational chatbots that help sustainability professionals reach decisions faster. Experienced in leading teams, modernizing legacy infrastructures, and optimizing system performance, while mentoring engineers and driving best practices in software development.",
-  skills: [
-    "React",
-    "React Native",
-    "Next.js",
-    "TypeScript",
-    "Node.js",
-    "Golang",
-    "Vue.js",
-    "NestJS",
-    "TailwindCSS",
-    "PostgreSQL",
-    "MongoDB",
-    "Redis",
-    "Docker",
-    "Kubernetes",
-    "AWS",
-    "AI Agents",
-    "Microservices",
-    "GraphQL",
-    "Redux",
-    "Prisma",
-    "SSR",
-    "SEO",
-  ],
+  skills: {
+    "Frontend": ["React", "React Native", "Next.js", "Vue.js", "TypeScript", "TailwindCSS", "Redux"],
+    "Backend": ["Node.js", "NestJS", "Golang", "GraphQL", "Prisma", "SSR"],
+    "Database": ["PostgreSQL", "MongoDB", "Redis"],
+    "DevOps & Cloud": ["Docker", "Kubernetes", "AWS"],
+    "AI & Tools": ["AI Agents", "Microservices", "SEO"],
+  },
 };
 
 const projects = [
@@ -231,7 +214,7 @@ const structuredData = {
     "@type": "Organization",
     name: "Educational Institution",
   },
-  knowsAbout: profile.skills,
+  knowsAbout: Object.values(profile.skills).flat(),
 };
 ---
 
@@ -276,27 +259,42 @@ const structuredData = {
       </section>
 
       <!-- Experience Section -->
-      <section class="space-y-4">
+      <section class="space-y-5">
         <h2 class="text-2xl font-semibold">Experience</h2>
-        <div class="space-y-6">
+        <div class="space-y-4">
           {
-            experiences.map((exp) => (
-              <article class="space-y-2">
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
-                  <div>
-                    <h3 class="text-lg font-semibold">{exp.position}</h3>
-                    <p class="text-base text-gray-700 dark:text-gray-300">{exp.company} · {exp.location}</p>
+            experiences.map((exp, index) => (
+              <article class="relative pl-8 pb-8 border-l-2 border-gray-300 dark:border-gray-700 last:pb-0">
+                {/* Timeline dot */}
+                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gray-800 dark:bg-gray-200 border-2 border-gray-100 dark:border-gray-900"></div>
+
+                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
+                    <div>
+                      <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">{exp.position}</h3>
+                      <p class="text-base font-medium text-gray-700 dark:text-gray-300">{exp.company}</p>
+                      <p class="text-sm text-gray-500 dark:text-gray-400">{exp.location}</p>
+                    </div>
+                    <span class="inline-flex items-center px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-full whitespace-nowrap">
+                      {exp.date}
+                    </span>
                   </div>
-                  <p class="text-sm text-gray-600 dark:text-gray-400 sm:text-right">{exp.date}</p>
+
+                  <ul class="space-y-2 mb-4">
+                    {exp.highlights.map((highlight) => (
+                      <li class="flex items-start text-sm text-gray-700 dark:text-gray-300">
+                        <span class="text-gray-400 mr-2 mt-1">▹</span>
+                        <span class="leading-relaxed">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
+                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                      <span class="font-semibold">Technologies:</span> {exp.technologies}
+                    </p>
+                  </div>
                 </div>
-                <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
-                  {exp.highlights.map((highlight) => (
-                    <li class="leading-relaxed">{highlight}</li>
-                  ))}
-                </ul>
-                <p class="text-xs text-gray-600 dark:text-gray-400 italic">
-                  <strong>Technologies:</strong> {exp.technologies}
-                </p>
               </article>
             ))
           }
@@ -304,37 +302,67 @@ const structuredData = {
       </section>
 
       <!-- Skills Section -->
-      <section class="space-y-3">
+      <section class="space-y-5">
         <h2 class="text-2xl font-semibold">Skills</h2>
-        <ul class="flex flex-wrap gap-2" role="list">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {
-            profile.skills.map((skill) => (
-              <li class="px-4 py-2 bg-gray-200 dark:bg-gray-800 rounded-lg text-base">
-                {skill}
-              </li>
+            Object.entries(profile.skills).map(([category, skillList]) => (
+              <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3 pb-2 border-b border-gray-200 dark:border-gray-700">
+                  {category}
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  {skillList.map((skill) => (
+                    <span class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))
           }
-        </ul>
+        </div>
       </section>
 
       <!-- Projects Section -->
-      <section class="space-y-3">
+      <section class="space-y-5">
         <h2 class="text-2xl font-semibold">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {
             projects.map((project) => (
-              <article class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  class="block"
-                >
-                  <h3 class="text-lg font-semibold mb-2">{project.name}</h3>
-                  <p class="text-sm mb-2">{project.description}</p>
-                  <p class="text-xs text-gray-600 dark:text-gray-400">{project.tech}</p>
-                </a>
-              </article>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noreferrer noopener"
+                class="group block"
+              >
+                <article class="h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
+                  <div class="flex items-start justify-between mb-3">
+                    <div class="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                      <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                      </svg>
+                    </div>
+                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </div>
+
+                  <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
+                    {project.name}
+                  </h3>
+
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-400">
+                      {project.tech}
+                    </p>
+                  </div>
+                </article>
+              </a>
             ))
           }
         </div>
