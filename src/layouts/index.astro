@@ -49,8 +49,10 @@ const {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImage} />
 
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#f3f4f6" />
+    <!-- Theme Color (Light and Dark) -->
+    <meta name="theme-color" content="#f3f4f6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- Favicons -->
     <link
@@ -73,8 +75,32 @@ const {
     <link rel="manifest" href="/favicon/site.webmanifest" />
 
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Dark Mode Script (runs before page loads to prevent flash) -->
+    <script is:inline>
+      // Check for saved theme preference or default to system preference
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      // Apply theme immediately
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+
+      // Save to localStorage
+      window.localStorage.setItem('theme', theme);
+    </script>
   </head>
-  <body>
+  <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
     <slot />
   </body>
 </html>

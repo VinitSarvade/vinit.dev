@@ -241,6 +241,19 @@ const structuredData = {
 
   <main class="flex flex-col min-h-dvh justify-center items-center p-5 sm:p-10">
     <article class="max-w-3xl w-full space-y-8">
+      <!-- Dark Mode Toggle Button -->
+      <button
+        id="theme-toggle"
+        class="fixed top-4 right-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+        aria-label="Toggle dark mode"
+      >
+        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+        </svg>
+        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+        </svg>
+      </button>
       <!-- Header Section -->
       <header class="text-center space-y-4">
         <h1 class="text-4xl sm:text-6xl font-semibold tracking-wide">
@@ -251,7 +264,7 @@ const structuredData = {
           <span class="hidden sm:inline">&nbsp;&middot;&nbsp;</span>
           <span class="block sm:inline">{profile.experience}</span>
         </p>
-        <p class="text-base sm:text-lg text-gray-600">
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400">
           {profile.headline}
         </p>
       </header>
@@ -272,16 +285,16 @@ const structuredData = {
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1">
                   <div>
                     <h3 class="text-lg font-semibold">{exp.position}</h3>
-                    <p class="text-base text-gray-700">{exp.company} · {exp.location}</p>
+                    <p class="text-base text-gray-700 dark:text-gray-300">{exp.company} · {exp.location}</p>
                   </div>
-                  <p class="text-sm text-gray-600 sm:text-right">{exp.date}</p>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 sm:text-right">{exp.date}</p>
                 </div>
-                <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
                   {exp.highlights.map((highlight) => (
                     <li class="leading-relaxed">{highlight}</li>
                   ))}
                 </ul>
-                <p class="text-xs text-gray-600 italic">
+                <p class="text-xs text-gray-600 dark:text-gray-400 italic">
                   <strong>Technologies:</strong> {exp.technologies}
                 </p>
               </article>
@@ -296,7 +309,7 @@ const structuredData = {
         <ul class="flex flex-wrap gap-2" role="list">
           {
             profile.skills.map((skill) => (
-              <li class="px-4 py-2 bg-gray-200 rounded-lg text-base">
+              <li class="px-4 py-2 bg-gray-200 dark:bg-gray-800 rounded-lg text-base">
                 {skill}
               </li>
             ))
@@ -310,7 +323,7 @@ const structuredData = {
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {
             projects.map((project) => (
-              <article class="p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+              <article class="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                 <a
                   href={project.url}
                   target="_blank"
@@ -319,7 +332,7 @@ const structuredData = {
                 >
                   <h3 class="text-lg font-semibold mb-2">{project.name}</h3>
                   <p class="text-sm mb-2">{project.description}</p>
-                  <p class="text-xs text-gray-600">{project.tech}</p>
+                  <p class="text-xs text-gray-600 dark:text-gray-400">{project.tech}</p>
                 </a>
               </article>
             ))
@@ -359,4 +372,33 @@ const structuredData = {
       </nav>
     </article>
   </main>
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Show the correct icon based on current theme
+    if (document.documentElement.classList.contains('dark')) {
+      themeToggleLightIcon?.classList.remove('hidden');
+    } else {
+      themeToggleDarkIcon?.classList.remove('hidden');
+    }
+
+    themeToggleBtn?.addEventListener('click', function() {
+      // Toggle icons
+      themeToggleDarkIcon?.classList.toggle('hidden');
+      themeToggleLightIcon?.classList.toggle('hidden');
+
+      // Toggle dark mode
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
 </RootLayout>
