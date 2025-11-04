@@ -253,7 +253,7 @@ const structuredData = {
       <!-- Dark Mode Toggle Button -->
       <button
         id="theme-toggle"
-        class="fixed top-4 right-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+        class="fixed top-4 right-4 p-2 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 hover:bg-gray-100 dark:hover:bg-slate-800 transition-all shadow-sm hover:shadow-md"
         aria-label="Toggle dark mode"
       >
         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -309,16 +309,16 @@ const structuredData = {
       </section>
 
       <!-- Experience Section -->
-      <section class="space-y-5">
-        <h2 class="text-2xl font-semibold">Experience</h2>
+      <section class="space-y-5 animate-section">
+        <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Experience</h2>
         <div class="space-y-4">
           {
             experiences.map((exp, index) => (
-              <article class="relative pl-8 pb-8 border-l-2 border-gray-300 dark:border-gray-700 last:pb-0">
+              <article class="timeline-item relative pl-8 pb-8 border-l-2 border-cyan-500 dark:border-cyan-400 last:pb-0" style={`animation-delay: ${index * 0.1}s`}>
                 {/* Timeline dot */}
-                <div class="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gray-800 dark:bg-gray-200 border-2 border-gray-100 dark:border-gray-900"></div>
+                <div class="timeline-dot absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 border-2 border-gray-50 dark:border-slate-950 shadow-lg"></div>
 
-                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300">
                   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
                     <div>
                       <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">{exp.position}</h3>
@@ -352,27 +352,22 @@ const structuredData = {
       </section>
 
       <!-- Skills Section -->
-      <section class="space-y-5">
-        <h2 class="text-2xl font-semibold">Skills</h2>
+      <section class="space-y-5 animate-section">
+        <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Skills</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {
-            Object.entries(profile.skills).map(([category, skillList]) => (
-              <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm">
-                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3 pb-2 border-b border-gray-200 dark:border-gray-700">
+            Object.entries(profile.skills).map(([category, skillList], index) => (
+              <div class="skill-card bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300" style={`animation-delay: ${index * 0.1}s`}>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3 pb-2 border-b-2 border-cyan-500 dark:border-cyan-400">
                   {category}
                 </h3>
                 <div class="flex flex-wrap gap-3">
-                  {skillList.map((skill) => (
-                    <span class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                  {skillList.map((skill, skillIndex) => (
+                    <span class="skill-badge inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-900 border border-gray-200 dark:border-slate-700 rounded-md hover:border-cyan-400 dark:hover:border-cyan-500 hover:shadow-md transition-all duration-200" style={`animation-delay: ${(index * 0.1) + (skillIndex * 0.05)}s`}>
                       <img
                         src={`https://cdn.simpleicons.org/${skill.icon}`}
                         alt={`${skill.name} logo`}
-                        class="w-4 h-4 dark:hidden"
-                      />
-                      <img
-                        src={`https://cdn.simpleicons.org/${skill.icon}/ffffff`}
-                        alt={`${skill.name} logo`}
-                        class="w-4 h-4 hidden dark:inline"
+                        class="w-4 h-4"
                       />
                       {skill.name}
                     </span>
@@ -385,25 +380,26 @@ const structuredData = {
       </section>
 
       <!-- Projects Section -->
-      <section class="space-y-5">
-        <h2 class="text-2xl font-semibold">Projects</h2>
+      <section class="space-y-5 animate-section">
+        <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Projects</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {
-            projects.map((project) => (
+            projects.map((project, index) => (
               <a
                 href={project.url}
                 target="_blank"
                 rel="noreferrer noopener"
-                class="group block"
+                class="group block project-card"
+                style={`animation-delay: ${index * 0.1}s`}
               >
-                <article class="h-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-200">
+                <article class="h-full bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 hover:-translate-y-1 transition-all duration-300">
                   <div class="flex items-start justify-between mb-3">
-                    <div class="p-2 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                      <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500 rounded-lg">
+                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                       </svg>
                     </div>
-                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-gray-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                     </svg>
                   </div>
@@ -444,6 +440,96 @@ const structuredData = {
     </article>
   </main>
 
+  <!-- Animation Styles -->
+  <style>
+    /* Fade in and slide up animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    /* Timeline animations */
+    .timeline-item {
+      opacity: 0;
+      animation: slideInLeft 0.6s ease-out forwards;
+    }
+
+    .timeline-dot {
+      animation: scaleIn 0.5s ease-out forwards, pulse 2s ease-in-out infinite;
+    }
+
+    /* Section animations */
+    .animate-section {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Skill card animations */
+    .skill-card {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .skill-badge {
+      opacity: 0;
+      animation: scaleIn 0.4s ease-out forwards;
+    }
+
+    /* Project card animations */
+    .project-card {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    /* Pause animations initially */
+    .animate-on-scroll {
+      opacity: 0 !important;
+      animation-play-state: paused !important;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1 !important;
+      animation-play-state: running !important;
+    }
+  </style>
+
   <!-- Dark Mode Toggle Script -->
   <script>
     const themeToggleBtn = document.getElementById('theme-toggle');
@@ -470,6 +556,64 @@ const structuredData = {
         document.documentElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
       }
+    });
+  </script>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          // Don't unobserve so animation plays every time
+        }
+      });
+    }, observerOptions);
+
+    // Observe timeline items
+    document.querySelectorAll('.timeline-item').forEach((el) => {
+      el.classList.add('animate-on-scroll');
+      observer.observe(el);
+    });
+
+    // Observe skill cards
+    document.querySelectorAll('.skill-card').forEach((el) => {
+      el.classList.add('animate-on-scroll');
+      observer.observe(el);
+    });
+
+    // Observe skill badges within visible cards
+    const badgeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-badge').forEach((badge) => {
+            badge.classList.add('animate-on-scroll');
+            badge.classList.add('animated');
+          });
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.skill-card').forEach((card) => {
+      badgeObserver.observe(card);
+    });
+
+    // Observe project cards
+    document.querySelectorAll('.project-card').forEach((el) => {
+      el.classList.add('animate-on-scroll');
+      observer.observe(el);
+    });
+
+    // Observe sections
+    document.querySelectorAll('.animate-section').forEach((el) => {
+      el.classList.add('animate-on-scroll');
+      observer.observe(el);
     });
   </script>
 </RootLayout>
