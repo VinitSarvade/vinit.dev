@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import RootLayout from "../layouts/index.astro";
 
+const siteUrl = "https://vinit.dev";
+
 const LINKS = [
   {
     name: "LinkedIn",
@@ -104,69 +106,92 @@ const projects = [
     tech: "TypeScript",
   },
 ];
+
+// Structured Data for SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.name,
+  jobTitle: profile.title,
+  url: siteUrl,
+  sameAs: [
+    "https://www.linkedin.com/in/vinit-sarvade",
+    "https://github.com/VinitSarvade",
+  ],
+  email: profile.email,
+  description: profile.about,
+  alumniOf: {
+    "@type": "Organization",
+    name: "Educational Institution",
+  },
+  knowsAbout: profile.skills,
+};
 ---
 
 <RootLayout>
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
   <main class="flex flex-col min-h-dvh justify-center items-center p-5 sm:p-10">
-    <div class="max-w-3xl w-full space-y-8">
+    <article class="max-w-3xl w-full space-y-8">
       <!-- Header Section -->
-      <div class="text-center space-y-4">
+      <header class="text-center space-y-4">
         <h1 class="text-4xl sm:text-6xl font-semibold tracking-wide">
           {profile.name}
         </h1>
-        <div class="flex flex-col sm:flex-row justify-center items-center">
-          <h2 class="text-xl sm:text-2xl">{profile.title}</h2>
-          <h2 class="text-xl sm:text-2xl hidden sm:block"
-            >&nbsp;&middot;&nbsp;</h2
-          >
-          <h2 class="text-xl sm:text-2xl">{profile.experience}</h2>
-        </div>
-      </div>
+        <p class="text-xl sm:text-2xl">
+          <span>{profile.title}</span>
+          <span class="hidden sm:inline">&nbsp;&middot;&nbsp;</span>
+          <span class="block sm:inline">{profile.experience}</span>
+        </p>
+      </header>
 
       <!-- About Section -->
-      <div class="space-y-3">
-        <h3 class="text-2xl font-semibold">About</h3>
+      <section class="space-y-3">
+        <h2 class="text-2xl font-semibold">About</h2>
         <p class="text-lg leading-relaxed">{profile.about}</p>
-      </div>
+      </section>
 
       <!-- Skills Section -->
-      <div class="space-y-3">
-        <h3 class="text-2xl font-semibold">Skills</h3>
-        <div class="flex flex-wrap gap-2">
+      <section class="space-y-3">
+        <h2 class="text-2xl font-semibold">Skills</h2>
+        <ul class="flex flex-wrap gap-2" role="list">
           {
             profile.skills.map((skill) => (
-              <span class="px-4 py-2 bg-gray-200 rounded-lg text-base">
+              <li class="px-4 py-2 bg-gray-200 rounded-lg text-base">
                 {skill}
-              </span>
+              </li>
             ))
           }
-        </div>
-      </div>
+        </ul>
+      </section>
 
       <!-- Projects Section -->
-      <div class="space-y-3">
-        <h3 class="text-2xl font-semibold">Projects</h3>
+      <section class="space-y-3">
+        <h2 class="text-2xl font-semibold">Projects</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {
             projects.map((project) => (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                class="p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
-              >
-                <h4 class="text-lg font-semibold mb-2">{project.name}</h4>
-                <p class="text-sm mb-2">{project.description}</p>
-                <p class="text-xs text-gray-600">{project.tech}</p>
-              </a>
+              <article class="p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  class="block"
+                >
+                  <h3 class="text-lg font-semibold mb-2">{project.name}</h3>
+                  <p class="text-sm mb-2">{project.description}</p>
+                  <p class="text-xs text-gray-600">{project.tech}</p>
+                </a>
+              </article>
             ))
           }
         </div>
-      </div>
+      </section>
 
       <!-- Contact Section -->
-      <div class="space-y-3">
-        <h3 class="text-2xl font-semibold">Contact</h3>
+      <section class="space-y-3">
+        <h2 class="text-2xl font-semibold">Contact</h2>
         <p class="text-lg">
           <a
             href={`mailto:${profile.email}`}
@@ -176,16 +201,16 @@ const projects = [
             {profile.email}
           </a>
         </p>
-      </div>
+      </section>
 
       <!-- Social Links -->
-      <div class="flex flex-row justify-center items-center gap-10 pt-4">
+      <nav aria-label="Social media links" class="flex flex-row justify-center items-center gap-10 pt-4">
         {
           LINKS.map((link) => (
-            <a href={link.url} target="_blank" rel="noreferrer" title={link.name}>
+            <a href={link.url} target="_blank" rel="noreferrer noopener" title={link.name} aria-label={link.name}>
               <Image
                 src={link.icon}
-                alt={link.name}
+                alt={`${link.name} icon`}
                 width="24"
                 height="24"
                 densities={[1, 2, 3]}
@@ -193,7 +218,7 @@ const projects = [
             </a>
           ))
         }
-      </div>
-    </div>
+      </nav>
+    </article>
   </main>
 </RootLayout>
