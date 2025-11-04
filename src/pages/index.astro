@@ -440,9 +440,9 @@ const structuredData = {
     </article>
   </main>
 
-  <!-- Animation Styles -->
+  <!-- CSS Scroll-Driven Animations -->
   <style>
-    /* Fade in and slide up animation */
+    /* Keyframe definitions */
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -479,54 +479,88 @@ const structuredData = {
     @keyframes pulse {
       0%, 100% {
         opacity: 1;
+        transform: scale(1);
       }
       50% {
-        opacity: 0.5;
+        opacity: 0.8;
+        transform: scale(1.05);
       }
     }
 
-    /* Timeline animations */
-    .timeline-item {
-      opacity: 0;
-      animation: slideInLeft 0.6s ease-out forwards;
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
-    .timeline-dot {
-      animation: scaleIn 0.5s ease-out forwards, pulse 2s ease-in-out infinite;
-    }
+    /* CSS Scroll-Driven Animations using view() */
 
-    /* Section animations */
+    /* Sections fade in as they enter viewport */
     .animate-section {
-      opacity: 0;
-      animation: fadeInUp 0.8s ease-out forwards;
+      animation: fadeInUp linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
     }
 
-    /* Skill card animations */
+    /* Timeline items slide in from left */
+    .timeline-item {
+      animation: slideInLeft linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+
+    /* Timeline dots scale in and pulse continuously */
+    .timeline-dot {
+      animation: scaleIn linear both, pulse 2s ease-in-out infinite;
+      animation-timeline: view();
+      animation-range: entry 0% entry 30%;
+    }
+
+    /* Skill cards fade in and scale */
     .skill-card {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
     }
 
+    /* Skill badges scale in with stagger effect (handled via inline animation-delay) */
     .skill-badge {
-      opacity: 0;
-      animation: scaleIn 0.4s ease-out forwards;
+      animation: scaleIn linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 40%;
     }
 
-    /* Project card animations */
+    /* Project cards reveal with slight scale */
     .project-card {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
     }
 
-    /* Pause animations initially */
-    .animate-on-scroll {
-      opacity: 0 !important;
-      animation-play-state: paused !important;
+    /* Smooth transitions on interactive elements */
+    .timeline-item,
+    .skill-card,
+    .project-card {
+      will-change: transform, opacity;
     }
 
-    .animate-on-scroll.animated {
-      opacity: 1 !important;
-      animation-play-state: running !important;
+    /* Fallback for browsers that don't support scroll-driven animations */
+    @supports not (animation-timeline: view()) {
+      .animate-section,
+      .timeline-item,
+      .timeline-dot,
+      .skill-card,
+      .skill-badge,
+      .project-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
     }
   </style>
 
@@ -556,64 +590,6 @@ const structuredData = {
         document.documentElement.classList.add('dark');
         localStorage.setItem('theme', 'dark');
       }
-    });
-  </script>
-
-  <!-- Scroll Animation Script -->
-  <script>
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-          // Don't unobserve so animation plays every time
-        }
-      });
-    }, observerOptions);
-
-    // Observe timeline items
-    document.querySelectorAll('.timeline-item').forEach((el) => {
-      el.classList.add('animate-on-scroll');
-      observer.observe(el);
-    });
-
-    // Observe skill cards
-    document.querySelectorAll('.skill-card').forEach((el) => {
-      el.classList.add('animate-on-scroll');
-      observer.observe(el);
-    });
-
-    // Observe skill badges within visible cards
-    const badgeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.skill-badge').forEach((badge) => {
-            badge.classList.add('animate-on-scroll');
-            badge.classList.add('animated');
-          });
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.skill-card').forEach((card) => {
-      badgeObserver.observe(card);
-    });
-
-    // Observe project cards
-    document.querySelectorAll('.project-card').forEach((el) => {
-      el.classList.add('animate-on-scroll');
-      observer.observe(el);
-    });
-
-    // Observe sections
-    document.querySelectorAll('.animate-section').forEach((el) => {
-      el.classList.add('animate-on-scroll');
-      observer.observe(el);
     });
   </script>
 </RootLayout>
