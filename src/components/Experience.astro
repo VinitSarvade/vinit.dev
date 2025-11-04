@@ -16,20 +16,33 @@ const { experiences } = Astro.props;
 ---
 
 <section class="space-y-5 animate-section">
-  <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Experience</h2>
+  <h2
+    class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent"
+  >
+    Experience
+  </h2>
   <div class="space-y-4">
     {
       experiences.map((exp, index) => (
-        <article class="timeline-item relative pl-8 pb-8 border-l-2 border-cyan-500 dark:border-cyan-400 last:pb-0" style={`animation-delay: ${index * 0.1}s`}>
+        <article
+          class="timeline-item relative pl-8 pb-8 border-l-2 border-cyan-500 dark:border-cyan-400 last:pb-0"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
           {/* Timeline dot */}
-          <div class="timeline-dot absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 border-2 border-gray-50 dark:border-slate-950 shadow-lg"></div>
+          <div class="timeline-dot absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 border-2 border-gray-50 dark:border-slate-950 shadow-lg" />
 
           <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
               <div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">{exp.position}</h3>
-                <p class="text-base font-medium text-gray-700 dark:text-gray-300">{exp.company}</p>
-                <p class="text-sm text-gray-500 dark:text-gray-400">{exp.location}</p>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  {exp.position}
+                </h3>
+                <p class="text-base font-medium text-gray-700 dark:text-gray-300">
+                  {exp.company}
+                </p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  {exp.location}
+                </p>
               </div>
               <span class="inline-flex items-center px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-full whitespace-nowrap">
                 {exp.date}
@@ -47,7 +60,8 @@ const { experiences } = Astro.props;
 
             <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
               <p class="text-xs font-normal text-gray-600 dark:text-gray-400">
-                <span class="font-medium">Technologies:</span> {exp.technologies}
+                <span class="font-medium">Technologies:</span>{" "}
+                {exp.technologies}
               </p>
             </div>
           </div>

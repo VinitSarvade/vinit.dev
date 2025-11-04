@@ -18,7 +18,10 @@ const { name, title, experience, headline, socialLinks } = Astro.props;
 
 <header class="text-center space-y-5">
   {/* Social Links at Top */}
-  <nav aria-label="Social media links" class="flex flex-row justify-center items-center gap-6">
+  <nav
+    aria-label="Social media links"
+    class="flex flex-row justify-center items-center gap-6"
+  >
     {
       socialLinks.map((link) => (
         <a

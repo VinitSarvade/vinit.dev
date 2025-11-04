@@ -14,7 +14,11 @@ const { projects } = Astro.props;
 ---
 
 <section class="space-y-5 animate-section">
-  <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Projects</h2>
+  <h2
+    class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent"
+  >
+    Projects
+  </h2>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
     {
       projects.map((project, index) => (
@@ -28,12 +32,32 @@ const { projects } = Astro.props;
           <article class="h-full bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 hover:-translate-y-1 transition-all duration-300">
             <div class="flex items-start justify-between mb-3">
               <div class="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500 rounded-lg">
-                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                <svg
+                  class="w-5 h-5 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                  />
                 </svg>
               </div>
-              <svg class="w-4 h-4 text-gray-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              <svg
+                class="w-4 h-4 text-gray-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
               </svg>
             </div>
 

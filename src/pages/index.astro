@@ -44,7 +44,7 @@ const profile = {
   about:
     "Full-stack engineer with over 8 years of experience designing and developing scalable web and mobile applications across SaaS, e-commerce, and climate tech sectors. Demonstrated proficiency in React, Next.js, Node.js, and Golang, with deep expertise in microservices, distributed systems, and cloud platforms such as AWS, Docker, and Kubernetes. Currently leading AI-driven initiatives at Unibloom, where I build simulation engines and conversational chatbots that help sustainability professionals reach decisions faster. Experienced in leading teams, modernizing legacy infrastructures, and optimizing system performance, while mentoring engineers and driving best practices in software development.",
   skills: {
-    "Frontend": [
+    Frontend: [
       { name: "React", icon: "react" },
       { name: "React Native", icon: "react" },
       { name: "Next.js", icon: "nextdotjs" },
@@ -53,14 +53,14 @@ const profile = {
       { name: "TailwindCSS", icon: "tailwindcss" },
       { name: "Redux", icon: "redux" },
     ],
-    "Backend": [
+    Backend: [
       { name: "Node.js", icon: "nodedotjs" },
       { name: "NestJS", icon: "nestjs" },
       { name: "Golang", icon: "go" },
       { name: "GraphQL", icon: "graphql" },
       { name: "Prisma", icon: "prisma" },
     ],
-    "Database": [
+    Database: [
       { name: "PostgreSQL", icon: "postgresql" },
       { name: "MongoDB", icon: "mongodb" },
       { name: "Redis", icon: "redis" },
@@ -70,7 +70,7 @@ const profile = {
       { name: "Kubernetes", icon: "kubernetes" },
       { name: "AWS", icon: "amazonwebservices" },
     ],
-    "Other": [
+    Other: [
       { name: "Git", icon: "git" },
       { name: "Jest", icon: "jest" },
       { name: "Cypress", icon: "cypress" },
@@ -152,7 +152,8 @@ const experiences = [
       "Utilizing AI to accelerate sustainability decision-making by orchestrating simulations and building AI-driven workflows and a chatbot that provides instant insights and answers to complex sustainability-related queries.",
       "Collaborated with climate experts to design and build impactful tools that help organizations plan their climate actions and drive sustainability decisions faster, providing insightful information quickly, reducing the information gathering and planning time from months to just a few hours.",
     ],
-    technologies: "React, Next.js, Node.js, TypeScript, TailwindCSS, Prisma, Jest, Docker, PostgreSQL, Vercel, Supabase, AI Agents, OpenAI SDK, Vercel AI SDK, LlamaIndex, Vector Databases",
+    technologies:
+      "React, Next.js, Node.js, TypeScript, TailwindCSS, Prisma, Jest, Docker, PostgreSQL, Vercel, Supabase, AI Agents, OpenAI SDK, Vercel AI SDK, LlamaIndex, Vector Databases",
   },
   {
     company: "Voicemod",
@@ -163,7 +164,8 @@ const experiences = [
       "Implemented frontend optimizations and built features that helped to improve and optimize the top of the Funnel.",
       "Delivered several initiatives and projects that drove more revenue, resolved several pain points, and improved the experience.",
     ],
-    technologies: "Vue.js, Nuxt.js, Node.js, TypeScript, Cypress, Jest, Testing Library, Vitest",
+    technologies:
+      "Vue.js, Nuxt.js, Node.js, TypeScript, Cypress, Jest, Testing Library, Vitest",
   },
   {
     company: "Flurn",
@@ -176,7 +178,8 @@ const experiences = [
       "Built the Web app in Next.js, mobile apps in React Native, and the backend API in a Golang server backed by a PostgreSQL database and Redis for caching and asynchronous task processing.",
       "Recruited and mentored a team of 8 individuals with varying experience levels, from interns to senior engineers, while fostering a culture of accountability, best practices, and code quality through code review.",
     ],
-    technologies: "React, React Native, Next.js, TypeScript, styled-components, Zustand, Tailwind, NX, Golang, PostgreSQL, Redis, Docker",
+    technologies:
+      "React, React Native, Next.js, TypeScript, styled-components, Zustand, Tailwind, NX, Golang, PostgreSQL, Redis, Docker",
   },
   {
     company: "Betterworks",
@@ -188,7 +191,8 @@ const experiences = [
       "Improved the application performance by implementing data caching at the API, which reduced the API latency by 60% and the database load by close to 40%.",
       "Maintained and enhanced React Native mobile application for employee surveys and quizzes.",
     ],
-    technologies: "React, React Native, Node.js, MongoDB, Redux-Saga, styled-components, Jest, Cypress",
+    technologies:
+      "React, React Native, Node.js, MongoDB, Redux-Saga, styled-components, Jest, Cypress",
   },
   {
     company: "Furlenco",
@@ -201,7 +205,8 @@ const experiences = [
       "Drove the adoption of engineering best practices like code reviews, CI/CD, and automated testing. Introduced TypeScript to help reduce type issues and catch bugs early.",
       "Owned and scaled critical commerce services, including payments microservices, API gateway, catalog management, CI/CD pipelines, and deployment scripts.",
     ],
-    technologies: "React, Next.js, TypeScript, Angular, Redux, styled-components, Node.js, Ruby on Rails, PostgreSQL, MongoDB, Redis, RabbitMQ, AWS, Docker, Kubernetes",
+    technologies:
+      "React, Next.js, TypeScript, Angular, Redux, styled-components, Node.js, Ruby on Rails, PostgreSQL, MongoDB, Redis, RabbitMQ, AWS, Docker, Kubernetes",
   },
   {
     company: "HolidayIQ",
@@ -226,7 +231,8 @@ const experiences = [
       "Collaborated with the accounting team to design and implement the ERP's complete accounting system, integrating invoicing, ledgers, and financial reporting.",
       "Developed the ERP's mobile application using the Ionic Framework from the ground up.",
     ],
-    technologies: "HTML, CSS, SCSS, jQuery, Drupal, PHP, CakePHP, MySQL, AngularJS, Ionic Framework, Ruby on Rails",
+    technologies:
+      "HTML, CSS, SCSS, jQuery, Drupal, PHP, CakePHP, MySQL, AngularJS, Ionic Framework, Ruby on Rails",
   },
 ];
 
@@ -247,13 +253,18 @@ const structuredData = {
     "@type": "Organization",
     name: "Educational Institution",
   },
-  knowsAbout: Object.values(profile.skills).flat().map(s => s.name),
+  knowsAbout: Object.values(profile.skills)
+    .flat()
+    .map((s) => s.name),
 };
 ---
 
 <RootLayout>
   <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(structuredData)}
+  />
 
   <!-- Scroll Animations Styles -->
   <ScrollAnimations />

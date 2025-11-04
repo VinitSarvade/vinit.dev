@@ -52,8 +52,16 @@ const {
     <meta property="twitter:image" content={ogImage} />
 
     <!-- Theme Color (Light and Dark) -->
-    <meta name="theme-color" content="#f3f4f6" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="theme-color"
+      content="#f3f4f6"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0f172a"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="color-scheme" content="light dark" />
 
     <!-- Favicons -->
@@ -82,27 +90,32 @@ const {
     <script is:inline>
       // Check for saved theme preference or default to system preference
       const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
         }
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark';
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
         }
-        return 'light';
+        return "light";
       })();
 
       // Apply theme immediately
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
       } else {
-        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.remove("dark");
       }
 
       // Save to localStorage
-      window.localStorage.setItem('theme', theme);
+      window.localStorage.setItem("theme", theme);
     </script>
   </head>
-  <body class="bg-gray-50 text-gray-800 dark:bg-slate-950 dark:text-gray-100 transition-colors duration-300">
+  <body
+    class="bg-gray-50 text-gray-800 dark:bg-slate-950 dark:text-gray-100 transition-colors duration-300"
+  >
     <slot />
   </body>
 </html>
