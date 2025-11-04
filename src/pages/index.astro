@@ -1,6 +1,13 @@
 ---
-import { Image } from "astro:assets";
 import RootLayout from "../layouts/index.astro";
+import Header from "../components/Header.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Skills from "../components/Skills.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import DarkModeToggle from "../components/DarkModeToggle.astro";
+import ScrollAnimations from "../components/ScrollAnimations.astro";
 
 const siteUrl = "https://vinit.dev";
 
@@ -248,348 +255,37 @@ const structuredData = {
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
+  <!-- Scroll Animations Styles -->
+  <ScrollAnimations />
+
   <main class="flex flex-col min-h-dvh justify-center items-center p-5 sm:p-10">
     <article class="max-w-3xl w-full space-y-8">
-      <!-- Dark Mode Toggle Button -->
-      <button
-        id="theme-toggle"
-        class="fixed top-4 right-4 p-2 rounded-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-700 hover:bg-gray-100 dark:hover:bg-slate-800 transition-all shadow-sm hover:shadow-md"
-        aria-label="Toggle dark mode"
-      >
-        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-        </svg>
-        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
-        </svg>
-      </button>
-      <!-- Header Section -->
-      <header class="text-center space-y-5">
-        {/* Social Links at Top */}
-        <nav aria-label="Social media links" class="flex flex-row justify-center items-center gap-6">
-          {
-            LINKS.map((link) => (
-              <a
-                href={link.url}
-                target="_blank"
-                rel="noreferrer noopener"
-                title={link.name}
-                aria-label={link.name}
-                class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-              >
-                <Image
-                  src={link.icon}
-                  alt={`${link.name} icon`}
-                  width="24"
-                  height="24"
-                  densities={[1, 2, 3]}
-                />
-              </a>
-            ))
-          }
-        </nav>
+      <!-- Dark Mode Toggle -->
+      <DarkModeToggle />
 
-        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight">
-          {profile.name}
-        </h1>
-        <p class="text-xl sm:text-2xl font-medium text-gray-700 dark:text-gray-300">
-          <span>{profile.title}</span>
-          <span class="hidden sm:inline">&nbsp;&middot;&nbsp;</span>
-          <span class="block sm:inline">{profile.experience}</span>
-        </p>
-        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-normal">
-          {profile.headline}
-        </p>
-      </header>
+      <!-- Header Section -->
+      <Header
+        name={profile.name}
+        title={profile.title}
+        experience={profile.experience}
+        headline={profile.headline}
+        socialLinks={LINKS}
+      />
 
       <!-- About Section -->
-      <section class="space-y-3">
-        <h2 class="text-2xl font-semibold">About</h2>
-        <p class="text-base leading-relaxed font-normal text-gray-700 dark:text-gray-300">{profile.about}</p>
-      </section>
+      <About content={profile.about} />
 
       <!-- Experience Section -->
-      <section class="space-y-5 animate-section">
-        <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Experience</h2>
-        <div class="space-y-4">
-          {
-            experiences.map((exp, index) => (
-              <article class="timeline-item relative pl-8 pb-8 border-l-2 border-cyan-500 dark:border-cyan-400 last:pb-0" style={`animation-delay: ${index * 0.1}s`}>
-                {/* Timeline dot */}
-                <div class="timeline-dot absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-cyan-400 dark:to-blue-400 border-2 border-gray-50 dark:border-slate-950 shadow-lg"></div>
-
-                <div class="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300">
-                  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
-                    <div>
-                      <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">{exp.position}</h3>
-                      <p class="text-base font-medium text-gray-700 dark:text-gray-300">{exp.company}</p>
-                      <p class="text-sm text-gray-500 dark:text-gray-400">{exp.location}</p>
-                    </div>
-                    <span class="inline-flex items-center px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded-full whitespace-nowrap">
-                      {exp.date}
-                    </span>
-                  </div>
-
-                  <ul class="space-y-2 mb-4">
-                    {exp.highlights.map((highlight) => (
-                      <li class="flex items-start text-sm font-normal text-gray-700 dark:text-gray-300">
-                        <span class="text-gray-400 mr-2 mt-1">▹</span>
-                        <span class="leading-relaxed">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
-                    <p class="text-xs font-normal text-gray-600 dark:text-gray-400">
-                      <span class="font-medium">Technologies:</span> {exp.technologies}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            ))
-          }
-        </div>
-      </section>
+      <Experience experiences={experiences} />
 
       <!-- Skills Section -->
-      <section class="space-y-5 animate-section">
-        <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Skills</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {
-            Object.entries(profile.skills).map(([category, skillList], index) => (
-              <div class="skill-card bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300" style={`animation-delay: ${index * 0.1}s`}>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3 pb-2 border-b-2 border-cyan-500 dark:border-cyan-400">
-                  {category}
-                </h3>
-                <div class="flex flex-wrap gap-3">
-                  {skillList.map((skill, skillIndex) => (
-                    <span class="skill-badge inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-900 border border-gray-200 dark:border-slate-700 rounded-md hover:border-cyan-400 dark:hover:border-cyan-500 hover:shadow-md transition-all duration-200" style={`animation-delay: ${(index * 0.1) + (skillIndex * 0.05)}s`}>
-                      <img
-                        src={`https://cdn.simpleicons.org/${skill.icon}`}
-                        alt={`${skill.name} logo`}
-                        class="w-4 h-4"
-                      />
-                      {skill.name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </section>
+      <Skills skills={profile.skills} />
 
       <!-- Projects Section -->
-      <section class="space-y-5 animate-section">
-        <h2 class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent">Projects</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {
-            projects.map((project, index) => (
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noreferrer noopener"
-                class="group block project-card"
-                style={`animation-delay: ${index * 0.1}s`}
-              >
-                <article class="h-full bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 hover:-translate-y-1 transition-all duration-300">
-                  <div class="flex items-start justify-between mb-3">
-                    <div class="p-2 bg-gradient-to-br from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500 rounded-lg">
-                      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                      </svg>
-                    </div>
-                    <svg class="w-4 h-4 text-gray-400 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                    </svg>
-                  </div>
-
-                  <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors">
-                    {project.name}
-                  </h3>
-
-                  <p class="text-sm font-normal text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-
-                  <div class="pt-3 border-t border-gray-200 dark:border-gray-700">
-                    <p class="text-xs font-normal text-gray-500 dark:text-gray-400">
-                      {project.tech}
-                    </p>
-                  </div>
-                </article>
-              </a>
-            ))
-          }
-        </div>
-      </section>
+      <Projects projects={projects} />
 
       <!-- Contact Section -->
-      <section class="space-y-3">
-        <h2 class="text-2xl font-semibold">Contact</h2>
-        <p class="text-lg font-normal">
-          <a
-            href={`mailto:${profile.email}`}
-            class="hover:underline text-gray-700 dark:text-gray-300"
-            rel="noreferrer"
-          >
-            {profile.email}
-          </a>
-        </p>
-      </section>
+      <Contact email={profile.email} />
     </article>
   </main>
-
-  <!-- CSS Scroll-Driven Animations -->
-  <style>
-    /* Keyframe definitions */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.8;
-        transform: scale(1.05);
-      }
-    }
-
-    @keyframes reveal {
-      from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* CSS Scroll-Driven Animations using view() */
-
-    /* Sections fade in as they enter viewport */
-    .animate-section {
-      animation: fadeInUp linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 30%;
-    }
-
-    /* Timeline items slide in from left */
-    .timeline-item {
-      animation: slideInLeft linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 40%;
-    }
-
-    /* Timeline dots scale in and pulse continuously */
-    .timeline-dot {
-      animation: scaleIn linear both, pulse 2s ease-in-out infinite;
-      animation-timeline: view();
-      animation-range: entry 0% entry 30%;
-    }
-
-    /* Skill cards fade in and scale */
-    .skill-card {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 35%;
-    }
-
-    /* Skill badges scale in with stagger effect (handled via inline animation-delay) */
-    .skill-badge {
-      animation: scaleIn linear both;
-      animation-timeline: view();
-      animation-range: entry 10% entry 40%;
-    }
-
-    /* Project cards reveal with slight scale */
-    .project-card {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 35%;
-    }
-
-    /* Smooth transitions on interactive elements */
-    .timeline-item,
-    .skill-card,
-    .project-card {
-      will-change: transform, opacity;
-    }
-
-    /* Fallback for browsers that don't support scroll-driven animations */
-    @supports not (animation-timeline: view()) {
-      .animate-section,
-      .timeline-item,
-      .timeline-dot,
-      .skill-card,
-      .skill-badge,
-      .project-card {
-        animation: none;
-        opacity: 1;
-        transform: none;
-      }
-    }
-  </style>
-
-  <!-- Dark Mode Toggle Script -->
-  <script>
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-    // Show the correct icon based on current theme
-    if (document.documentElement.classList.contains('dark')) {
-      themeToggleLightIcon?.classList.remove('hidden');
-    } else {
-      themeToggleDarkIcon?.classList.remove('hidden');
-    }
-
-    themeToggleBtn?.addEventListener('click', function() {
-      // Toggle icons
-      themeToggleDarkIcon?.classList.toggle('hidden');
-      themeToggleLightIcon?.classList.toggle('hidden');
-
-      // Toggle dark mode
-      if (document.documentElement.classList.contains('dark')) {
-        document.documentElement.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-      } else {
-        document.documentElement.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-      }
-    });
-  </script>
 </RootLayout>

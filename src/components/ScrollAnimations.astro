@@ -1,0 +1,126 @@
+---
+// CSS Scroll-Driven Animations Component
+---
+
+<style is:global>
+  /* Keyframe definitions */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(50px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* CSS Scroll-Driven Animations using view() */
+
+  /* Sections fade in as they enter viewport */
+  .animate-section {
+    animation: fadeInUp linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+
+  /* Timeline items slide in from left */
+  .timeline-item {
+    animation: slideInLeft linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+
+  /* Timeline dots scale in and pulse continuously */
+  .timeline-dot {
+    animation: scaleIn linear both, pulse 2s ease-in-out infinite;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+
+  /* Skill cards fade in and scale */
+  .skill-card {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  /* Skill badges scale in with stagger effect (handled via inline animation-delay) */
+  .skill-badge {
+    animation: scaleIn linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 40%;
+  }
+
+  /* Project cards reveal with slight scale */
+  .project-card {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  /* Smooth transitions on interactive elements */
+  .timeline-item,
+  .skill-card,
+  .project-card {
+    will-change: transform, opacity;
+  }
+
+  /* Fallback for browsers that don't support scroll-driven animations */
+  @supports not (animation-timeline: view()) {
+    .animate-section,
+    .timeline-item,
+    .timeline-dot,
+    .skill-card,
+    .skill-badge,
+    .project-card {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

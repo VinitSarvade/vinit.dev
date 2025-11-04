@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  name: string;
+  title: string;
+  experience: string;
+  headline: string;
+  socialLinks: Array<{
+    name: string;
+    url: string;
+    icon: any;
+  }>;
+}
+
+const { name, title, experience, headline, socialLinks } = Astro.props;
+---
+
+<header class="text-center space-y-5">
+  {/* Social Links at Top */}
+  <nav aria-label="Social media links" class="flex flex-row justify-center items-center gap-6">
+    {
+      socialLinks.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          title={link.name}
+          aria-label={link.name}
+          class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors"
+        >
+          <Image
+            src={link.icon}
+            alt={`${link.name} icon`}
+            width="24"
+            height="24"
+            densities={[1, 2, 3]}
+          />
+        </a>
+      ))
+    }
+  </nav>
+
+  <h1 class="text-4xl sm:text-6xl font-bold tracking-tight">
+    {name}
+  </h1>
+  <p class="text-xl sm:text-2xl font-medium text-gray-700 dark:text-gray-300">
+    <span>{title}</span>
+    <span class="hidden sm:inline">&nbsp;&middot;&nbsp;</span>
+    <span class="block sm:inline">{experience}</span>
+  </p>
+  <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-normal">
+    {headline}
+  </p>
+</header>
