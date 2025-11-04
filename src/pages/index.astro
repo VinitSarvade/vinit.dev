@@ -41,6 +41,69 @@ const profile = {
     "Scalable Systems",
   ],
 };
+
+const projects = [
+  {
+    name: "Invoice Generator",
+    description: "TypeScript-based invoice generation application",
+    url: "https://github.com/VinitSarvade/invoice-generator",
+    tech: "TypeScript",
+  },
+  {
+    name: "Multitrack Audio Player",
+    description: "Audio application for playing multiple tracks",
+    url: "https://github.com/VinitSarvade/multitrack-audio-player",
+    tech: "TypeScript",
+  },
+  {
+    name: "E-Store",
+    description: "E-commerce platform built with modern web technologies",
+    url: "https://github.com/VinitSarvade/estore",
+    tech: "React, TypeScript, Next.js",
+  },
+  {
+    name: "Xero Balance Sheet",
+    description: "Financial tool for balance sheet management",
+    url: "https://github.com/VinitSarvade/xero-balance-sheet",
+    tech: "TypeScript",
+  },
+  {
+    name: "Wildlife Explorer",
+    description: "Application for exploring wildlife information",
+    url: "https://github.com/VinitSarvade/wildlife-explorer",
+    tech: "TypeScript",
+  },
+  {
+    name: "Files Explorer",
+    description: "File management and exploration application",
+    url: "https://github.com/VinitSarvade/files-explorer",
+    tech: "TypeScript",
+  },
+  {
+    name: "CloneBnB",
+    description: "Airbnb-inspired accommodation booking platform",
+    url: "https://github.com/VinitSarvade/clonebnb",
+    tech: "TypeScript",
+  },
+  {
+    name: "Expensify Clone",
+    description: "Expense tracking application",
+    url: "https://github.com/VinitSarvade/expensify-clone",
+    tech: "TypeScript",
+  },
+  {
+    name: "HN Clone React",
+    description: "Hacker News clone built with React and SSR",
+    url: "https://github.com/VinitSarvade/hn-clone-react",
+    tech: "React, JavaScript",
+  },
+  {
+    name: "Neo Calendar",
+    description: "Modern calendar component",
+    url: "https://github.com/VinitSarvade/neo-calendar",
+    tech: "TypeScript",
+  },
+];
 ---
 
 <RootLayout>
@@ -75,6 +138,27 @@ const profile = {
               <span class="px-4 py-2 bg-gray-200 rounded-lg text-base">
                 {skill}
               </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Projects Section -->
+      <div class="space-y-3">
+        <h3 class="text-2xl font-semibold">Projects</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {
+            projects.map((project) => (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                class="p-4 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <h4 class="text-lg font-semibold mb-2">{project.name}</h4>
+                <p class="text-sm mb-2">{project.description}</p>
+                <p class="text-xs text-gray-600">{project.tech}</p>
+              </a>
             ))
           }
         </div>
