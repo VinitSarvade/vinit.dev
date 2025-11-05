@@ -87,7 +87,44 @@ const showViewMore = experiences.length > 3;
 
 <style>
   .experience-hidden {
-    display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transform: translateY(-20px);
+    transition:
+      opacity 0.5s ease-out,
+      max-height 0.5s ease-out,
+      transform 0.5s ease-out,
+      margin 0.5s ease-out,
+      padding 0.5s ease-out;
+    margin: 0;
+    padding: 0;
+  }
+
+  .experience-revealing {
+    opacity: 1;
+    max-height: 2000px;
+    transform: translateY(0);
+    transition:
+      opacity 0.6s ease-out,
+      max-height 0.8s ease-out,
+      transform 0.6s ease-out,
+      margin 0.6s ease-out,
+      padding 0.6s ease-out;
+  }
+
+  .experience-collapsing {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-20px);
+    transition:
+      opacity 0.4s ease-in,
+      max-height 0.5s ease-in,
+      transform 0.4s ease-in,
+      margin 0.4s ease-in,
+      padding 0.4s ease-in;
+    margin: 0;
+    padding: 0;
   }
 </style>
 
@@ -99,11 +136,24 @@ const showViewMore = experiences.length > 3;
   viewMoreBtn?.addEventListener("click", () => {
     isExpanded = !isExpanded;
 
-    hiddenExperiences.forEach((exp) => {
+    hiddenExperiences.forEach((exp, index) => {
       if (isExpanded) {
+        // Remove hidden class and add revealing class
         exp.classList.remove("experience-hidden");
+        exp.classList.remove("experience-collapsing");
+        // Add a staggered delay for each item
+        setTimeout(() => {
+          exp.classList.add("experience-revealing");
+        }, index * 100);
       } else {
-        exp.classList.add("experience-hidden");
+        // Add collapsing class
+        exp.classList.remove("experience-revealing");
+        exp.classList.add("experience-collapsing");
+        // After animation completes, add hidden class
+        setTimeout(() => {
+          exp.classList.add("experience-hidden");
+          exp.classList.remove("experience-collapsing");
+        }, 500);
       }
     });
 
