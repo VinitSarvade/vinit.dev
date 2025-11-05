@@ -7,7 +7,7 @@
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(80px);
     }
     to {
       opacity: 1;
@@ -18,7 +18,7 @@
   @keyframes slideInLeft {
     from {
       opacity: 0;
-      transform: translateX(-30px);
+      transform: translateX(-60px);
     }
     to {
       opacity: 1;
@@ -29,7 +29,7 @@
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.8);
+      transform: scale(0.7);
     }
     to {
       opacity: 1;
@@ -52,7 +52,7 @@
   @keyframes reveal {
     from {
       opacity: 0;
-      transform: translateY(50px) scale(0.95);
+      transform: translateY(60px) scale(0.9);
     }
     to {
       opacity: 1;
@@ -66,14 +66,14 @@
   .animate-section {
     animation: fadeInUp ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 50%;
+    animation-range: entry 0% entry 40%;
   }
 
   /* Timeline items fade in from bottom */
   .timeline-item {
     animation: fadeInUp ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 60%;
+    animation-range: entry 0% entry 45%;
   }
 
   /* Timeline dots scale in and pulse continuously */
@@ -82,28 +82,28 @@
       scaleIn ease-out both,
       pulse 2s ease-in-out infinite;
     animation-timeline: view();
-    animation-range: entry 0% entry 50%;
+    animation-range: entry 0% entry 40%;
   }
 
   /* Skill cards fade in and scale */
   .skill-card {
     animation: reveal ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 55%;
+    animation-range: entry 0% entry 45%;
   }
 
   /* Skill badges scale in with stagger effect (handled via inline animation-delay) */
   .skill-badge {
     animation: scaleIn ease-out both;
     animation-timeline: view();
-    animation-range: entry 10% entry 60%;
+    animation-range: entry 10% entry 50%;
   }
 
   /* Project cards reveal with slight scale */
   .project-card {
     animation: reveal ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 55%;
+    animation-range: entry 0% entry 45%;
   }
 
   /* Smooth transitions on interactive elements */
