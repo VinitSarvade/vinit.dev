@@ -30,7 +30,7 @@ const { name, title, experience, headline, socialLinks } = Astro.props;
           rel="noreferrer noopener"
           title={link.name}
           aria-label={link.name}
-          class="p-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110"
+          class="p-3 rounded-xl bg-white dark:bg-slate-800 hover:bg-primary-50 dark:hover:bg-primary-900/20 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110"
         >
           <Image
             src={link.icon}
@@ -44,12 +44,12 @@ const { name, title, experience, headline, socialLinks } = Astro.props;
     }
   </nav>
 
-  <h1 class="text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+  <h1 class="text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-primary-600 via-secondary-600 to-cyan-600 dark:from-primary-400 dark:via-secondary-400 dark:to-cyan-400 bg-clip-text text-transparent">
     {name}
   </h1>
   <p class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
     <span>{title}</span>
-    <span class="hidden sm:inline text-emerald-600 dark:text-emerald-400">&nbsp;&middot;&nbsp;</span>
+    <span class="hidden sm:inline text-primary-600 dark:text-primary-400">&nbsp;&middot;&nbsp;</span>
     <span class="block sm:inline">{experience}</span>
   </p>
   <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 font-medium">
