@@ -18,7 +18,7 @@ const showViewMore = experiences.length > 3;
 
 <section class="space-y-5 animate-section">
   <h2
-    class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-fuchsia-600 dark:from-purple-400 dark:to-fuchsia-400 bg-clip-text text-transparent"
+    class="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent"
   >
     Experience
   </h2>
@@ -26,13 +26,13 @@ const showViewMore = experiences.length > 3;
     {
       experiences.map((exp, index) => (
         <article
-          class={`timeline-item relative pl-8 pb-8 border-l-2 border-purple-300 dark:border-purple-700 last:pb-0 ${index >= 3 ? "experience-hidden" : ""}`}
+          class={`timeline-item relative pl-8 pb-8 border-l-2 border-emerald-300 dark:border-emerald-700 last:pb-0 ${index >= 3 ? "experience-hidden" : ""}`}
           style={`animation-delay: ${index * 0.1}s`}
         >
           {/* Timeline dot */}
-          <div class="timeline-dot absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 dark:from-purple-400 dark:to-fuchsia-400 border-2 border-amber-50 dark:border-indigo-950 shadow-lg" />
+          <div class="timeline-dot absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-400 dark:to-teal-400 border-2 border-orange-50 dark:border-slate-900 shadow-lg" />
 
-          <div class="bg-white dark:bg-indigo-900/50 backdrop-blur-sm border-2 border-purple-100 dark:border-purple-900/50 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-purple-300 dark:hover:border-purple-700 hover:scale-[1.02] transition-all duration-300">
+          <div class="bg-white dark:bg-slate-800/50 backdrop-blur-sm border-2 border-emerald-100 dark:border-emerald-900/30 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-emerald-300 dark:hover:border-emerald-600 hover:scale-[1.02] transition-all duration-300">
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-3">
               <div>
                 <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">
@@ -45,7 +45,7 @@ const showViewMore = experiences.length > 3;
                   {exp.location}
                 </p>
               </div>
-              <span class="inline-flex items-center px-4 py-1.5 text-sm font-semibold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-900/50 rounded-full whitespace-nowrap shadow-sm">
+              <span class="inline-flex items-center px-4 py-1.5 text-sm font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/30 rounded-full whitespace-nowrap shadow-sm">
                 {exp.date}
               </span>
             </div>
@@ -53,15 +53,15 @@ const showViewMore = experiences.length > 3;
             <ul class="space-y-2 mb-4">
               {exp.highlights.map((highlight) => (
                 <li class="flex items-start text-sm font-normal text-gray-800 dark:text-gray-200">
-                  <span class="text-purple-500 dark:text-purple-400 mr-2 mt-1 font-bold">▹</span>
+                  <span class="text-emerald-600 dark:text-emerald-400 mr-2 mt-1 font-bold">▹</span>
                   <span class="leading-relaxed">{highlight}</span>
                 </li>
               ))}
             </ul>
 
-            <div class="pt-3 border-t border-purple-200 dark:border-purple-800/50">
+            <div class="pt-3 border-t border-emerald-200 dark:border-emerald-800/30">
               <p class="text-xs font-normal text-gray-700 dark:text-gray-300">
-                <span class="font-semibold text-purple-600 dark:text-purple-400">Technologies:</span>{" "}
+                <span class="font-semibold text-emerald-600 dark:text-emerald-400">Technologies:</span>{" "}
                 {exp.technologies}
               </p>
             </div>
@@ -76,7 +76,7 @@ const showViewMore = experiences.length > 3;
       <div class="flex justify-center pt-3">
         <button
           id="view-more-btn"
-          class="px-8 py-3 text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-700 hover:to-fuchsia-700 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+          class="px-8 py-3 text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
         >
           View More
         </button>
