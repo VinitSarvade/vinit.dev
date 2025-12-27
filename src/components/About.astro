@@ -6,11 +6,13 @@ interface Props {
 const { content } = Astro.props;
 ---
 
-<section class="space-y-3">
-  <h2 class="text-2xl font-semibold">About</h2>
-  <p
-    class="text-base leading-relaxed font-normal text-gray-700 dark:text-gray-300"
-  >
-    {content}
-  </p>
+<section class="space-y-4 animate-section">
+  <h2 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-fuchsia-600 dark:from-purple-400 dark:to-fuchsia-400 bg-clip-text text-transparent">About</h2>
+  <div class="bg-white dark:bg-indigo-900/50 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-purple-100 dark:border-purple-900/50">
+    <p
+      class="text-base leading-relaxed font-normal text-gray-800 dark:text-gray-200"
+    >
+      {content}
+    </p>
+  </div>
 </section>

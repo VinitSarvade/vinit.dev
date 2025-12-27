@@ -30,30 +30,29 @@ const { name, title, experience, headline, socialLinks } = Astro.props;
           rel="noreferrer noopener"
           title={link.name}
           aria-label={link.name}
-          class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-800 transition-colors"
+          class="p-3 rounded-xl bg-white dark:bg-indigo-900 hover:bg-purple-100 dark:hover:bg-purple-900 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-110"
         >
           <Image
             src={link.icon}
             alt={`${link.name} icon`}
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             densities={[1, 2, 3]}
-            class="dark:bg-white dark:rounded"
           />
         </a>
       ))
     }
   </nav>
 
-  <h1 class="text-4xl sm:text-6xl font-bold tracking-tight">
+  <h1 class="text-4xl sm:text-6xl font-bold tracking-tight bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-600 dark:from-purple-400 dark:via-fuchsia-400 dark:to-pink-400 bg-clip-text text-transparent">
     {name}
   </h1>
-  <p class="text-xl sm:text-2xl font-medium text-gray-700 dark:text-gray-300">
+  <p class="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
     <span>{title}</span>
-    <span class="hidden sm:inline">&nbsp;&middot;&nbsp;</span>
+    <span class="hidden sm:inline text-purple-500">&nbsp;&middot;&nbsp;</span>
     <span class="block sm:inline">{experience}</span>
   </p>
-  <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 font-normal">
+  <p class="text-base sm:text-lg text-gray-700 dark:text-gray-300 font-medium">
     {headline}
   </p>
 </header>

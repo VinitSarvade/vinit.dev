@@ -13,7 +13,7 @@ const { skills } = Astro.props;
 
 <section class="space-y-5 animate-section">
   <h2
-    class="text-2xl font-semibold bg-gradient-to-r from-cyan-600 to-blue-600 dark:from-cyan-400 dark:to-blue-400 bg-clip-text text-transparent"
+    class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-fuchsia-600 dark:from-purple-400 dark:to-fuchsia-400 bg-clip-text text-transparent"
   >
     Skills
   </h2>
@@ -21,16 +21,16 @@ const { skills } = Astro.props;
     {
       Object.entries(skills).map(([category, skillList], index) => (
         <div
-          class="skill-card bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-slate-800 rounded-lg p-5 shadow-sm hover:shadow-xl hover:border-cyan-300 dark:hover:border-cyan-700 transition-all duration-300"
+          class="skill-card bg-white dark:bg-indigo-900/50 backdrop-blur-sm border-2 border-purple-100 dark:border-purple-900/50 rounded-2xl p-6 shadow-md hover:shadow-xl hover:border-purple-300 dark:hover:border-purple-700 hover:scale-[1.02] transition-all duration-300"
           style={`animation-delay: ${index * 0.1}s`}
         >
-          <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-3 pb-2 border-b-2 border-gray-300 dark:border-slate-700">
+          <h3 class="text-lg font-bold bg-gradient-to-r from-purple-600 to-fuchsia-600 dark:from-purple-400 dark:to-fuchsia-400 bg-clip-text text-transparent mb-4 pb-2 border-b-2 border-purple-200 dark:border-purple-800/50">
             {category}
           </h3>
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-2">
             {skillList.map((skill, skillIndex) => (
               <span
-                class="skill-badge inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-900 border border-gray-200 dark:border-slate-700 rounded-md hover:border-cyan-400 dark:hover:border-cyan-500 hover:shadow-md transition-all duration-200"
+                class="skill-badge inline-flex items-center gap-2 px-3 py-2 text-sm font-semibold text-purple-700 dark:text-purple-200 bg-gradient-to-br from-purple-50 to-fuchsia-50 dark:from-purple-900/30 dark:to-fuchsia-900/30 border border-purple-200 dark:border-purple-800/50 rounded-xl hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-md hover:scale-105 transition-all duration-200"
                 style={`animation-delay: ${index * 0.1 + skillIndex * 0.05}s`}
               >
                 <img
