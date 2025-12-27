@@ -8,30 +8,30 @@ export default {
 				sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
 			},
 			colors: {
-				// Custom color palette
+				// Slate & Violet Professional Palette
 				primary: {
-					50: '#ecfdf5',   // emerald-50
-					100: '#d1fae5',  // emerald-100
-					200: '#a7f3d0',  // emerald-200
-					300: '#6ee7b7',  // emerald-300
-					400: '#34d399',  // emerald-400
-					500: '#10b981',  // emerald-500
-					600: '#059669',  // emerald-600
-					700: '#047857',  // emerald-700
-					800: '#065f46',  // emerald-800
-					900: '#064e3b',  // emerald-900
+					50: '#f5f3ff',   // violet-50
+					100: '#ede9fe',  // violet-100
+					200: '#ddd6fe',  // violet-200
+					300: '#c4b5fd',  // violet-300
+					400: '#a78bfa',  // violet-400
+					500: '#8b5cf6',  // violet-500
+					600: '#7c3aed',  // violet-600
+					700: '#6d28d9',  // violet-700
+					800: '#5b21b6',  // violet-800
+					900: '#4c1d95',  // violet-900
 				},
 				secondary: {
-					50: '#f0fdfa',   // teal-50
-					100: '#ccfbf1',  // teal-100
-					200: '#99f6e4',  // teal-200
-					300: '#5eead4',  // teal-300
-					400: '#2dd4bf',  // teal-400
-					500: '#14b8a6',  // teal-500
-					600: '#0d9488',  // teal-600
-					700: '#0f766e',  // teal-700
-					800: '#115e59',  // teal-800
-					900: '#134e4a',  // teal-900
+					50: '#fdf2f8',   // pink-50
+					100: '#fce7f3',  // pink-100
+					200: '#fbcfe8',  // pink-200
+					300: '#f9a8d4',  // pink-300
+					400: '#f472b6',  // pink-400
+					500: '#ec4899',  // pink-500
+					600: '#db2777',  // pink-600
+					700: '#be185d',  // pink-700
+					800: '#9f1239',  // pink-800
+					900: '#831843',  // pink-900
 				},
 			}
 		},
