@@ -1,26 +1,87 @@
 ---
 import '../styles/global.css';
-// Component Imports
-import Button from '../components/Button.astro';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import { MyPortfolio } from '../components/my-portfolio';
 ---
 
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
+		<meta name="author" content="Vinit Sarvade" />
+    <meta name="description" content="Vinit Sarvade's Portfolio" />
+    <meta name="keywords" content="Vinit Sarvade, Portfolio" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+		<title>Vinit Sarvade</title>
+		<script is:inline>
+			const t = localStorage.getItem('theme');
+			if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+				document.documentElement.classList.add('dark');
+			}
+		</script>
 	</head>
 
 	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
+		<div class="min-h-screen flex flex-col p-4">
+			<MyPortfolio />
 		</div>
+		<script>
+			// Dark mode
+			const sun = document.getElementById('theme-icon-sun');
+			const moon = document.getElementById('theme-icon-moon');
+			function applyTheme(dark: boolean) {
+				document.documentElement.classList.toggle('dark', dark);
+				sun?.classList.toggle('hidden', !dark);
+				moon?.classList.toggle('hidden', dark);
+			}
+			const stored = localStorage.getItem('theme');
+			applyTheme(stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+			document.getElementById('theme-toggle')?.addEventListener('click', () => {
+				const isDark = !document.documentElement.classList.contains('dark');
+				localStorage.setItem('theme', isDark ? 'dark' : 'light');
+				applyTheme(isDark);
+			});
+
+			// Experience toggle
+			const toggle = document.getElementById('experience-toggle');
+			const el = document.getElementById('experience-collapsible');
+			const gradient = document.getElementById('experience-gradient');
+			const text = document.getElementById('experience-toggle-text');
+			const icon = document.getElementById('experience-toggle-icon');
+			let expanded = false;
+
+			toggle?.addEventListener('click', () => {
+				if (!el) return;
+				expanded = !expanded;
+				if (expanded) {
+					el.style.maxHeight = el.scrollHeight + 'px';
+					gradient?.classList.add('opacity-0');
+					icon?.classList.add('rotate-180');
+					if (text) text.textContent = 'Show less';
+				} else {
+					el.style.maxHeight = '';
+					gradient?.classList.remove('opacity-0');
+					icon?.classList.remove('rotate-180');
+					if (text) text.textContent = 'Show more';
+				}
+			});
+		</script>
 	</body>
 </html>
