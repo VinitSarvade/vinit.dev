@@ -1,4 +1,5 @@
 import type { SkillGroup } from "./portfolio-data";
+import { SkillIcon } from "./skill-icons";
 
 interface SkillsSectionProps {
   skills: readonly SkillGroup[];
@@ -20,8 +21,9 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
               {group.items.map((skill) => (
                 <span
                   key={skill}
-                  className="px-2 py-0.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded text-[11px] font-medium text-gray-600 dark:text-zinc-400"
+                  className="inline-flex items-center gap-1 px-2 py-0.5 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded text-[11px] font-medium text-gray-600 dark:text-zinc-400 transition-colors duration-150 hover:bg-gray-100/70 dark:hover:bg-zinc-800/70"
                 >
+                  <SkillIcon skill={skill} category={group.category} />
                   {skill}
                 </span>
               ))}

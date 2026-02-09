@@ -123,6 +123,13 @@
   }
 }
 
+:root {
+  --icon-color: var(--icon-light);
+}
+.dark {
+  --icon-color: var(--icon-dark);
+}
+
 @utility animate-fade-in-up {
   animation: fade-in-up 0.4s ease-out both;
 }

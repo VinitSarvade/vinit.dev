@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail, Sparkles, type LucideIcon } from "lucide-react";
+import type { IconType } from "react-icons";
+import { LuGithub, LuLinkedin, LuMail, LuSparkles } from "react-icons/lu";
 
 export const PORTFOLIO_DATA = {
   profile: {
@@ -7,15 +8,15 @@ export const PORTFOLIO_DATA = {
     socials: [
       {
         name: "GitHub",
-        icon: Github,
+        icon: LuGithub,
         url: "https://github.com/VinitSarvade",
       },
       {
         name: "LinkedIn",
-        icon: Linkedin,
+        icon: LuLinkedin,
         url: "https://www.linkedin.com/in/vinit-sarvade/",
       },
-      { name: "Email", icon: Mail, url: "mailto:vinit.sarvade.08@gmail.com" },
+      { name: "Email", icon: LuMail, url: "mailto:vinit.sarvade.08@gmail.com" },
     ],
   },
   contact: {
@@ -189,7 +190,7 @@ export const PORTFOLIO_DATA = {
       desc: "AI-powered product analysis. Provides an in-depth analysis of products, pros and cons, and recommendations.",
       github: "https://github.com/VinitSarvade/smart-buy",
       href: "https://smart-buy.vinit.dev",
-      icon: Sparkles,
+      icon: LuSparkles,
     },
     {
       title: "eStore",
@@ -244,5 +245,5 @@ export type Project = {
   readonly desc: string;
   readonly github: string;
   readonly href?: string;
-  readonly icon?: LucideIcon;
+  readonly icon?: IconType;
 };

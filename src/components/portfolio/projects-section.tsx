@@ -1,4 +1,4 @@
-import { ArrowUpRight, GithubIcon } from "lucide-react";
+import { LuArrowUpRight, LuGithub } from "react-icons/lu";
 import type { Project } from "./portfolio-data";
 
 interface ProjectsSectionProps {
@@ -24,11 +24,11 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               </h3>
               <div className="flex gap-1.5 shrink-0 ml-2">
                 <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub`}>
-                  <GithubIcon className="h-3.5 w-3.5 text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors" />
+                  <LuGithub className="h-3.5 w-3.5 text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors" />
                 </a>
                 {project.href && (
                   <a href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} live demo`}>
-                    <ArrowUpRight className="h-3.5 w-3.5 text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors" />
+                    <LuArrowUpRight className="h-3.5 w-3.5 text-gray-400 dark:text-zinc-500 hover:text-gray-600 dark:hover:text-zinc-300 transition-colors" />
                   </a>
                 )}
               </div>

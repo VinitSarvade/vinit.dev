@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { LuChevronDown } from "react-icons/lu";
 import type { Experience } from "./portfolio-data";
 
 interface ExperienceSectionProps {
@@ -57,7 +57,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
           className="rounded-full px-5 text-xs font-mono font-medium text-gray-500 dark:text-zinc-400 bg-linear-to-b from-white to-gray-50 dark:from-zinc-800 dark:to-zinc-900 border-gray-200/60 dark:border-zinc-700/40 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_4px_12px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_1px_3px_rgba(0,0,0,0.4),0_4px_12px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.04)] hover:shadow-[0_2px_6px_rgba(0,0,0,0.06),0_8px_20px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.9)] dark:hover:shadow-[0_2px_6px_rgba(0,0,0,0.5),0_8px_20px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.04)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
         >
           <span id="experience-toggle-text">Show more</span>
-          <ChevronDown id="experience-toggle-icon" className="h-3.5 w-3.5 transition-transform duration-300" />
+          <LuChevronDown id="experience-toggle-icon" className="h-3.5 w-3.5 transition-transform duration-300" />
         </Button>
       </div>
     </div>
