@@ -11,7 +11,7 @@ interface ProfileHeaderProps {
 
 export function ProfileHeader({ name, role, location, socials }: ProfileHeaderProps) {
   return (
-    <div className="animate-fade-in-up [animation-delay:50ms] space-y-4">
+    <div className="space-y-4">
       <div>
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
           {name}

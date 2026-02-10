@@ -7,7 +7,7 @@ interface ProjectsSectionProps {
 
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
-    <div className="animate-fade-in-up [animation-delay:300ms] space-y-4">
+    <div className="space-y-4">
       <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-muted-foreground">
         Projects
       </h2>

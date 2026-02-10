@@ -132,6 +132,7 @@
 
 @utility animate-fade-in-up {
   animation: fade-in-up 0.4s ease-out both;
+  will-change: transform, opacity;
 }
 
 @keyframes fade-in-up {

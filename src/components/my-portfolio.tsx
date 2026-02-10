@@ -10,10 +10,10 @@ import { ThemeToggle } from "./portfolio/theme-toggle";
 
 export function MyPortfolio() {
   return (
-    <div className="animate-fade-in-up bg-background border rounded-lg overflow-clip transition-colors duration-300">
+    <div className="animate-fade-in-up bg-background border rounded-lg overflow-clip">
       <div className="grid grid-cols-1 md:grid-cols-12">
         {/* Sidebar */}
-        <div className="md:col-span-4 bg-muted/50 border-r transition-colors duration-300">
+        <div className="md:col-span-4 bg-muted/50 border-r">
           <div className="md:sticky md:top-4 p-5 md:p-8 flex flex-col gap-6 md:gap-8 relative">
             <div className="absolute top-5 right-5 md:top-8 md:right-8 z-10">
               <ThemeToggle />
@@ -34,7 +34,7 @@ export function MyPortfolio() {
         </div>
 
         {/* Main Content */}
-        <div className="md:col-span-8 p-5 md:p-10 space-y-8 md:space-y-10 bg-background transition-colors duration-300">
+        <div className="md:col-span-8 p-5 md:p-10 space-y-8 md:space-y-10 bg-background">
           <AboutSection about={PORTFOLIO_DATA.about} />
           <ExperienceSection experience={PORTFOLIO_DATA.experience} />
           <ProjectsSection projects={PORTFOLIO_DATA.projects} />

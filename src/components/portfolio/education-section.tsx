@@ -6,7 +6,7 @@ interface EducationSectionProps {
 
 export function EducationSection({ education }: EducationSectionProps) {
   return (
-    <div className="animate-fade-in-up [animation-delay:150ms] space-y-3">
+    <div className="space-y-3">
       <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-muted-foreground">
         Education
       </h2>

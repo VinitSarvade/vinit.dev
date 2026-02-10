@@ -8,7 +8,7 @@ interface ExperienceSectionProps {
 
 export function ExperienceSection({ experience }: ExperienceSectionProps) {
   return (
-    <div className="animate-fade-in-up [animation-delay:250ms] space-y-6">
+    <div className="space-y-6">
       <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-muted-foreground">
         Experience
       </h2>
