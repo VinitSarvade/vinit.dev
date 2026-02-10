@@ -10,26 +10,31 @@ import { ThemeToggle } from "./portfolio/theme-toggle";
 
 export function MyPortfolio() {
   return (
-    <div className="animate-fade-in-up md:h-[calc(100vh-2rem)] bg-white dark:bg-zinc-950 border border-gray-200 dark:border-zinc-800 rounded-lg md:overflow-hidden transition-colors duration-300">
-      <div className="grid grid-cols-1 md:grid-cols-12 md:h-full">
+    <div className="animate-fade-in-up bg-background border rounded-lg overflow-clip transition-colors duration-300">
+      <div className="grid grid-cols-1 md:grid-cols-12">
         {/* Sidebar */}
-        <div className="md:col-span-4 bg-gray-50/50 dark:bg-zinc-900/50 border-r border-gray-200 dark:border-zinc-800 p-5 md:p-8 flex flex-col gap-6 md:gap-8 md:overflow-y-auto transition-colors duration-300">
-          <ProfileHeader
-            name={PORTFOLIO_DATA.profile.name}
-            role={PORTFOLIO_DATA.profile.role}
-            location={PORTFOLIO_DATA.contact.location}
-            socials={PORTFOLIO_DATA.profile.socials}
-          />
+        <div className="md:col-span-4 bg-muted/50 border-r transition-colors duration-300">
+          <div className="md:sticky md:top-4 p-5 md:p-8 flex flex-col gap-6 md:gap-8 relative">
+            <div className="absolute top-5 right-5 md:top-8 md:right-8 z-10">
+              <ThemeToggle />
+            </div>
 
-          <Separator className="bg-gray-200 dark:bg-zinc-800" />
+            <ProfileHeader
+              name={PORTFOLIO_DATA.profile.name}
+              role={PORTFOLIO_DATA.profile.role}
+              location={PORTFOLIO_DATA.contact.location}
+              socials={PORTFOLIO_DATA.profile.socials}
+            />
 
-          <SkillsSection skills={PORTFOLIO_DATA.skills} />
-          <EducationSection education={PORTFOLIO_DATA.education} />
-          <ThemeToggle />
+            <Separator />
+
+            <SkillsSection skills={PORTFOLIO_DATA.skills} />
+            <EducationSection education={PORTFOLIO_DATA.education} />
+          </div>
         </div>
 
         {/* Main Content */}
-        <div className="md:col-span-8 p-5 md:p-10 space-y-8 md:space-y-10 md:overflow-y-auto bg-white dark:bg-zinc-950 transition-colors duration-300">
+        <div className="md:col-span-8 p-5 md:p-10 space-y-8 md:space-y-10 bg-background transition-colors duration-300">
           <AboutSection about={PORTFOLIO_DATA.about} />
           <ExperienceSection experience={PORTFOLIO_DATA.experience} />
           <ProjectsSection projects={PORTFOLIO_DATA.projects} />
