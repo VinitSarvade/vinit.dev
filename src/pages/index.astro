@@ -42,6 +42,29 @@ import { MyPortfolio } from '../components/my-portfolio';
     <meta name="twitter:image" content="https://vinit.dev/favicon/android-chrome-512x512.png" />
 
 		<title>Vinit Sarvade</title>
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Vinit Sarvade",
+			"url": "https://vinit.dev",
+			"jobTitle": "Fullstack Engineer",
+			"sameAs": [
+				"https://github.com/VinitSarvade",
+				"https://www.linkedin.com/in/vinit-sarvade/"
+			],
+			"knowsAbout": [
+				"React", "Next.js", "TypeScript", "Node.js", "Golang",
+				"React Native", "Expo", "TailwindCSS", "Angular", "Vue",
+				"GraphQL", "PostgreSQL", "MongoDB", "Redis", "Docker", "Kubernetes", "AWS",
+				"AI Agents", "LangChain", "Microservices", "REST APIs", "CI/CD",
+				"SEO", "Web Performance", "System Design"
+			],
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Bangalore",
+				"addressCountry": "IN"
+			}
+		})} />
 		<script is:inline>
 			const t = localStorage.getItem('theme');
 			if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -51,9 +74,9 @@ import { MyPortfolio } from '../components/my-portfolio';
 	</head>
 
 	<body>
-		<div class="min-h-screen flex flex-col p-4">
+		<main class="min-h-screen flex flex-col p-4">
 			<MyPortfolio />
-		</div>
+		</main>
 		<script>
 			// Dark mode
 			const sun = document.getElementById('theme-icon-sun');

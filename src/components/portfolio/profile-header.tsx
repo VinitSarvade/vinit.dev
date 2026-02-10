@@ -26,17 +26,18 @@ export function ProfileHeader({ name, role, location, socials }: ProfileHeaderPr
       </div>
       <div className="flex gap-2">
         {socials.map((social, index) => (
-          <a key={index} href={social.url} target="_blank" rel="noopener noreferrer">
+          <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
             <Button
               variant="outline"
               size="icon"
               className="h-8 w-8 rounded-md border-gray-200 dark:border-zinc-800 hover:border-gray-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-800 text-gray-500 dark:text-zinc-400 hover:text-black dark:hover:text-zinc-100 transition-all"
+              title={social.name}
             >
               <social.icon className="h-4 w-4" />
             </Button>
           </a>
         ))}
-        <a href="/Vinit Sarvade - Resume.pdf" download>
+        <a href="/Vinit Sarvade - Resume.pdf" download aria-label="Download Resume">
           <Button
             variant="outline"
             size="icon"
