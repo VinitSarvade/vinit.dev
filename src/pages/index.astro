@@ -71,6 +71,28 @@ import { MyPortfolio } from '../components/my-portfolio';
 				document.documentElement.classList.add('dark');
 			}
 		</script>
+		<style is:inline>
+			::view-transition-group(root) {
+				animation-timing-function: var(--expo-out);
+			}
+			::view-transition-new(root) {
+				mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>') top left / 0 no-repeat;
+				mask-origin: content-box;
+				animation: theme-reveal 1s;
+				animation-fill-mode: both;
+				transform-origin: top left;
+			}
+			::view-transition-old(root),
+			.dark::view-transition-old(root) {
+				animation: theme-reveal 1s;
+				animation-fill-mode: both;
+				transform-origin: top left;
+				z-index: -1;
+			}
+			@keyframes theme-reveal {
+				to { mask-size: 350vmax; }
+			}
+		</style>
 	</head>
 
 	<body>
@@ -89,6 +111,7 @@ import { MyPortfolio } from '../components/my-portfolio';
 			}
 			const stored = localStorage.getItem('theme');
 			applyTheme(stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+
 			document.getElementById('theme-toggle')?.addEventListener('click', () => {
 				const isDark = !document.documentElement.classList.contains('dark');
 				const switchTheme = () => {
