@@ -1,13 +1,52 @@
-# Astro with Tailwind
+# vinit.dev
+
+My personal portfolio website built with Astro, React, and TailwindCSS.
+
+**Live:** [vinit.dev](https://vinit.dev)
+
+## Tech Stack
+
+- **Astro** - Static site generation
+- **React 19** - Interactive UI components
+- **TailwindCSS v4** - Styling
+- **Radix UI / shadcn/ui** - Accessible component primitives
+- **MDX** - Markdown with JSX support
+- **Bun** - Package manager & runtime
+
+## Features
+
+- Dark/light theme with view transition animations
+- Responsive two-column layout
+- Collapsible experience timeline
+- Certificates section with image thumbnails
+- JSON-LD structured data for SEO
+- Content Security Policy headers
+- Accessibility-first (skip links, ARIA labels, semantic HTML)
+
+## Getting Started
 
 ```sh
-bun create astro@latest -- --template with-tailwindcss
+# Install dependencies
+bun install
+
+# Start dev server
+bun run dev
+
+# Build for production
+bun run build
+
+# Preview production build
+bun run preview
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/with-tailwindcss)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/with-tailwindcss/devcontainer.json)
+## Project Structure
 
-Astro comes with [Tailwind](https://tailwindcss.com) support out of the box. This example showcases how to style your Astro project with Tailwind.
-
-For complete setup instructions, please see our [Tailwind Styling Guide](https://docs.astro.build/en/guides/styling/#tailwind).
+```
+src/
+├── pages/          # Astro pages
+├── components/
+│   ├── portfolio/  # Portfolio section components
+│   └── ui/         # shadcn/ui components
+├── lib/            # Utilities
+└── styles/         # Global styles
+```
