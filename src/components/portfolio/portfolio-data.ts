@@ -82,6 +82,33 @@ export const PORTFOLIO_DATA = {
       period: "2013",
     },
   ],
+  certificates: [
+    {
+      title: "DeepSearch in TypeScript",
+      url: "https://res.cloudinary.com/total-typescript/image/upload/v1760249663/certificate/63fcc239-787f-4d2f-b22b-3e22db3b5bd3/build-deepsearch-in-typescript.png",
+      image: "https://res.cloudinary.com/total-typescript/image/upload/v1760249663/certificate/63fcc239-787f-4d2f-b22b-3e22db3b5bd3/build-deepsearch-in-typescript.png",
+    },
+    {
+      title: "AI SDK V6 Workshop",
+      url: "https://res.cloudinary.com/total-typescript/image/upload/v1769768914/certificate/63fcc239-787f-4d2f-b22b-3e22db3b5bd3/ai-sdk-v6-crash-course.png",
+      image: "https://res.cloudinary.com/total-typescript/image/upload/v1769768914/certificate/63fcc239-787f-4d2f-b22b-3e22db3b5bd3/ai-sdk-v6-crash-course.png",
+    },
+    {
+      title: "React - The Complete Guide",
+      url: "https://www.udemy.com/certificate/UC-6e232acf-58da-4d4a-9aea-6ca86893657a",
+      image: "https://udemy-certificate.s3.amazonaws.com/image/UC-6e232acf-58da-4d4a-9aea-6ca86893657a.jpg?v=1587731077000"
+    },
+    {
+      title: "Golang",
+      url: "https://www.udemy.com/certificate/UC-46374551-3349-44e5-86c0-ae52dd220991/",
+      image: "https://udemy-certificate.s3.amazonaws.com/image/UC-46374551-3349-44e5-86c0-ae52dd220991.jpg?v=1587729335000"
+    },
+    {
+      title: "Running Kubernetes on AWS (EKS)",
+      url: "https://www.linkedin.com/learning/certificates/6e0bb0c6b10b421ef456861ae21997320d5bf3e1486abc46b3a39c1e274f682a?trk=share_certificate",
+      image: "https://media.licdn.com/dms/image/v2/D5622AQExlxUCpJHqew/feedshare-shrink_1280/B56ZxqBOkNGsAc-/0/1771305232969?e=1771309804&v=beta&t=4p8ho1vc4SWFBRAQkygeN8Ws7ockS6loYvHVeIerTSY"
+    },
+  ],
   about:
     "Full-stack engineer with over 9 years of experience designing and developing scalable web and mobile applications across SaaS, e-commerce, and climate tech sectors. Demonstrated proficiency in React, Next.js, Node.js, and Golang, with deep expertise in microservices, distributed systems, and cloud platforms such as AWS, Docker, and Kubernetes. Lead AI-driven initiatives at Unibloom, where I build simulation engines and conversational chatbots that help sustainability professionals reach decisions faster. Experienced in leading teams, modernizing legacy infrastructures, and optimizing system performance, while mentoring engineers and driving best practices in software development.",
   experience: [
@@ -240,6 +267,7 @@ export type Social = PortfolioData["profile"]["socials"][number];
 export type SkillGroup = PortfolioData["skills"][number];
 export type Education = PortfolioData["education"][number];
 export type Experience = PortfolioData["experience"][number];
+export type Certificate = PortfolioData["certificates"][number];
 export type Project = {
   readonly title: string;
   readonly desc: string;

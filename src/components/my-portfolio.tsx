@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { AboutSection } from "./portfolio/about-section";
+import { CertificatesSection } from "./portfolio/certificates-section";
 import { EducationSection } from "./portfolio/education-section";
 import { ExperienceSection } from "./portfolio/experience-section";
 import { ProfileHeader } from "./portfolio/profile-header";
@@ -30,6 +31,7 @@ export function MyPortfolio() {
 
             <SkillsSection skills={PORTFOLIO_DATA.skills} />
             <EducationSection education={PORTFOLIO_DATA.education} />
+            <CertificatesSection certificates={PORTFOLIO_DATA.certificates} />
           </div>
         </div>
 
