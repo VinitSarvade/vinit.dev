@@ -133,9 +133,13 @@ export const PORTFOLIO_DATA = {
       location: "Remote",
       period: "Jan 2024 - Sept 2025",
       description: [
-        "Led the development of the climate action planning tool, enabling users to plan carbon footprint reductions efficiently.",
-        "Utilized AI to accelerate sustainability decision-making by orchestrating simulations and building AI-driven workflows and a chatbot that provided instant insights and answers to complex sustainability-related queries.",
-        "Designed & Developed advanced software in collaboration with climate specialists, using AI and data analytics to deliver rapid, actionable insights for sustainability planning initiatives.",
+        "Led the development of the climate action planning tool, enabling users to plan and track carbon footprint reductions efficiently across targets and initiatives.",
+        "Built the core target tracking system, enabling users to define sustainability targets, link initiatives against them, visualise progress, and automatically calculate gaps.",
+        "Architected and evolved the simulation modelling engine, starting with a rule-based model and upgrading it to an AI-powered simulation that helps businesses identify the most effective solutions for their specific sustainability context.",
+        "Built a RAG-powered chatbot that answers questions about sustainability topics as well as queries about the user's own targets and initiatives, delivering instant and contextually relevant insights.",
+        "Migrated authentication to Supabase Auth, improving security and simplifying the auth layer across the platform.",
+        "Built a typesafe routing wrapper for Next.js API routes, reducing runtime errors and improving developer experience across the codebase.",
+        "Designed and developed advanced software in collaboration with climate specialists, using AI and data analytics to deliver rapid, actionable insights for sustainability planning initiatives.",
       ],
     },
     {
