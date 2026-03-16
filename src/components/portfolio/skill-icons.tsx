@@ -1,7 +1,7 @@
 import type { ComponentType } from "react";
 import {
   SiHtml5,
-  SiCss3,
+  SiCss,
   SiTailwindcss,
   SiSass,
   SiReact,
@@ -32,12 +32,16 @@ import {
   SiRabbitmq,
   SiDocker,
   SiKubernetes,
-  SiAmazonwebservices,
+
   SiTestinglibrary,
   SiJest,
   SiCypress,
   SiLangchain,
+  SiVite,
+  SiWebpack,
+  SiElectron,
 } from "react-icons/si";
+import { FaAws } from "react-icons/fa6";
 import { BsStars, BsDatabase } from "react-icons/bs";
 import { LuFlaskConical, LuCodeXml, LuServer, LuBriefcase } from "react-icons/lu";
 
@@ -47,7 +51,7 @@ type SkillEntry = { icon: IconComponent; color: string; darkColor?: string };
 
 const skillIconMap: Record<string, SkillEntry> = {
   "HTML & CSS": { icon: SiHtml5, color: "#E34F26" },
-  "CSS-in-JS": { icon: SiCss3, color: "#1572B6" },
+  "CSS-in-JS": { icon: SiCss, color: "#1572B6" },
   TailwindCSS: { icon: SiTailwindcss, color: "#06B6D4" },
   "SASS/SCSS": { icon: SiSass, color: "#CC6699" },
   "React.js": { icon: SiReact, color: "#61DAFB" },
@@ -69,7 +73,7 @@ const skillIconMap: Record<string, SkillEntry> = {
   "Nest.js": { icon: SiNestjs, color: "#E0234E" },
   PHP: { icon: SiPhp, color: "#777BB4" },
   Python: { icon: SiPython, color: "#3776AB" },
-  Rails: { icon: SiRubyonrails, color: "#CC0000" },
+  "Ruby on Rails": { icon: SiRubyonrails, color: "#CC0000" },
   GraphQL: { icon: SiGraphql, color: "#E10098" },
   PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
   MySQL: { icon: SiMysql, color: "#4479A1" },
@@ -80,7 +84,7 @@ const skillIconMap: Record<string, SkillEntry> = {
   RabbitMQ: { icon: SiRabbitmq, color: "#FF6600" },
   Docker: { icon: SiDocker, color: "#2496ED" },
   Kubernetes: { icon: SiKubernetes, color: "#326CE5" },
-  AWS: { icon: SiAmazonwebservices, color: "#FF9900" },
+  AWS: { icon: FaAws, color: "#FF9900" },
   "React Testing Library": { icon: SiTestinglibrary, color: "#E33332" },
   Jest: { icon: SiJest, color: "#C21325" },
   Cypress: { icon: SiCypress, color: "#69D3A7" },
@@ -91,6 +95,10 @@ const skillIconMap: Record<string, SkillEntry> = {
   "Vector Database": { icon: BsDatabase, color: "#8B5CF6" },
   Codex: { icon: BsStars, color: "#8B5CF6" },
   "Claude Code": { icon: BsStars, color: "#D97757" },
+  Vite: { icon: SiVite, color: "#646CFF" },
+  Webpack: { icon: SiWebpack, color: "#8DD6F9" },
+  Electron: { icon: SiElectron, color: "#47848F" },
+  "electron-vite": { icon: SiElectron, color: "#47848F" },
 };
 
 const categoryFallback: Record<string, SkillEntry> = {

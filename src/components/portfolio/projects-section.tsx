@@ -25,10 +25,12 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
               <div className="flex shrink-0 ml-2">
                 <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub`} className="inline-flex items-center justify-center min-h-10 min-w-10 -m-2">
                   <LuGithub className="size-3.5 text-muted-foreground hover:text-foreground transition-colors" />
+                  <span className="sr-only">{project.title} on GitHub</span>
                 </a>
                 {project.href && (
                   <a href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} live demo`} className="inline-flex items-center justify-center min-h-10 min-w-10 -m-2">
                     <LuArrowUpRight className="size-3.5 text-muted-foreground hover:text-foreground transition-colors" />
+                    <span className="sr-only">{project.title} live demo</span>
                   </a>
                 )}
               </div>
@@ -36,6 +38,13 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
               {project.desc}
             </p>
+            <div className="flex flex-wrap gap-1">
+              {project.tech.map((t) => (
+                <span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-muted text-muted-foreground">
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </div>

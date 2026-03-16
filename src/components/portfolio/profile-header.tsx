@@ -26,7 +26,7 @@ export function ProfileHeader({ name, role, location, socials }: ProfileHeaderPr
       </div>
       <div className="flex gap-1">
         {socials.map((social, index) => (
-          <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={social.name}>
+          <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" aria-label={`Vinit's ${social.name}`}>
             <Button
               variant="outline"
               size="icon"
@@ -34,6 +34,7 @@ export function ProfileHeader({ name, role, location, socials }: ProfileHeaderPr
               title={social.name}
             >
               <social.icon className="size-4" />
+              <span className="sr-only">{social.name}</span>
             </Button>
           </a>
         ))}
@@ -45,6 +46,7 @@ export function ProfileHeader({ name, role, location, socials }: ProfileHeaderPr
             title="Download Resume"
           >
             <LuDownload className="size-4" />
+            <span className="sr-only">Download Resume</span>
           </Button>
         </a>
       </div>

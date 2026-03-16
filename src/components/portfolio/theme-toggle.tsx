@@ -11,6 +11,7 @@ export function ThemeToggle() {
       >
         <LuSun id="theme-icon-sun" className="hidden size-4" />
         <LuMoon id="theme-icon-moon" className="hidden size-4" />
+        <span className="sr-only">Toggle dark mode</span>
       </button>
     </div>
   );

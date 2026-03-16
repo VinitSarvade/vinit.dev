@@ -28,9 +28,10 @@ export const PORTFOLIO_DATA = {
       category: "Frontend",
       items: [
         "HTML & CSS", "CSS-in-JS", "TailwindCSS", "SASS/SCSS",
-        "React.js", "Next.js", "Tanstack Start","AngularJS", "Angular",
+        "React.js", "Next.js", "Tanstack Start", "AngularJS", "Angular",
         "Vue", "React Query", "Redux", "styled-components", "Zustand",
         "Shadcn components", "Astro", "SSR (Server Side Rendering)",
+        "WebSockets", "Vite", "Webpack", "CDN",
       ],
     },
     {
@@ -43,14 +44,14 @@ export const PORTFOLIO_DATA = {
       category: "Backend",
       items: [
         "TypeScript", "Golang", "Node.js", "Nest.js", "PHP", "Python",
-        "Rails", "GraphQL", "PostgreSQL", "MySQL", "MongoDB", "Redis",
+        "Ruby on Rails", "GraphQL", "PostgreSQL", "MySQL", "MongoDB", "Redis",
         "Prisma", "Drizzle", "RabbitMQ", "Docker", "Kubernetes", "AWS",
       ],
     },
     {
       category: "Testing",
       items: [
-        "React Testing Library", "Jest", "Appium",
+        "React Testing Library", "Jest", "RSpec", "Appium",
         "Playwright", "Cypress",
       ],
     },
@@ -64,9 +65,8 @@ export const PORTFOLIO_DATA = {
     {
       category: "Other",
       items: [
-        "SEO", "Agile Methodologies", "Team Building",
-        "Teamwork", "Team management", "Project Management",
-        "Product Enhancement", "Frontend Engineering",
+        "SEO", "Agile Methodologies", "Team management",
+        "Project Management", "Electron", "electron-vite",
       ],
     },
   ],
@@ -109,8 +109,11 @@ export const PORTFOLIO_DATA = {
       image: "/images/certificates/linkedin-k8s.jpeg"
     },
   ],
-  about:
-    "Full-stack engineer with over 9 years of experience designing and developing scalable web and mobile applications across SaaS, e-commerce, and climate tech sectors. Demonstrated proficiency in React, Next.js, Node.js, and Golang, with deep expertise in microservices, distributed systems, and cloud platforms such as AWS, Docker, and Kubernetes. Lead AI-driven initiatives at Unibloom, where I build simulation engines and conversational chatbots that help sustainability professionals reach decisions faster. Experienced in leading teams, modernizing legacy infrastructures, and optimizing system performance, while mentoring engineers and driving best practices in software development.",
+  about: [
+    "I'm a full-stack engineer with over 9 years of experience building production-grade web applications across e-commerce, SaaS, climate tech, and multimedia. I've been a founding engineer, a principal engineer, and everything in between.",
+    "I specialise in React, Next.js, and TypeScript on the frontend, and Golang, Node.js, and Ruby on Rails on the backend. I've built and shipped AI-powered features in production, including LLM-driven workflows, simulation engines, OCR-based tools, and conversational assistants using AI SDKs and vector databases.",
+    "I care about the craft. I've refactored messy codebases, migrated legacy architectures, built design systems from scratch, and led and mentored teams of engineers. I believe good engineering culture is as important as good code.",
+  ],
   experience: [
     {
       role: "Senior Software Engineer",
@@ -120,7 +123,8 @@ export const PORTFOLIO_DATA = {
       description: [
         "Developed and shipped feature enhancements for the Camb Studio platform using React, NodeJS, and TypeScript, ensuring compatibility with high-traffic workflows and seamless integration with multimedia editing tools.",
         "Enhanced video and audio synchronization within the subtitle editor by applying efficient state management and responsive design principles to deliver a smoother user experience and reduce 10% time spent in dubbing and subtitling workflows.",
-        "The studio platform contains the Audio, Video Dubbing & Subtitling editor, Audio descriptions, Audiobooks, and Video Narrations editor, and tools: Text to Speech, Speech to Text, Text translation, Document translation, Website translation, Image translation, Audio Separation, Sound and Music generation from a prompt, and more.",
+        "Refactored the studio editor architecture from a fragmented mix of Zustand, React Context, and duplicated components into a structured component composition pattern with Zustand as the single source of truth, eliminating unnecessary re-renders across multiple components and significantly improving maintainability and state predictability.",
+        "Built an OCR-based screen translation feature for Savante, a desktop app built with Electron — users draw a box on screen, OCR captures the content, and a text transformation is applied instantly. Also upgraded the app from an older Electron version to a modern build with standardized tooling using electron-vite.",
       ],
     },
     {
@@ -129,8 +133,8 @@ export const PORTFOLIO_DATA = {
       location: "Remote",
       period: "Jan 2024 - Sept 2025",
       description: [
-        "Leading the development of the climate action planning tool, enabling users to plan carbon footprint reductions efficiently.",
-        "Utilizing AI to accelerate sustainability decision-making by orchestrating simulations and building AI-driven workflows and a chatbot that provides instant insights and answers to complex sustainability-related queries.",
+        "Led the development of the climate action planning tool, enabling users to plan carbon footprint reductions efficiently.",
+        "Utilized AI to accelerate sustainability decision-making by orchestrating simulations and building AI-driven workflows and a chatbot that provided instant insights and answers to complex sustainability-related queries.",
         "Designed & Developed advanced software in collaboration with climate specialists, using AI and data analytics to deliver rapid, actionable insights for sustainability planning initiatives.",
       ],
     },
@@ -140,8 +144,9 @@ export const PORTFOLIO_DATA = {
       location: "Remote",
       period: "June 2023 - Dec 2023",
       description: [
-        "Implemented frontend optimizations and built features that helped to improve and optimize the top of the Funnel.",
-        "Delivered several initiatives and projects that drove more revenue, resolved several pain points, and improved the experience.",
+        "Built the Gift a Subscription feature, enabling users to purchase and send Voicemod subscriptions to friends, driving a new revenue stream.",
+        "Hardened the authentication microservice, improving security and reliability for the platform's login and session management flows.",
+        "Supported the migration of the Voice Store from a legacy codebase to Nuxt.js, implementing SEO improvements that resulted in 8% more organic traffic within the first 2 weeks post migration.",
       ],
     },
     {
@@ -154,6 +159,7 @@ export const PORTFOLIO_DATA = {
         "Developed MVP and led iterative releases based on user feedback, achieving product-market fit within a few months.",
         "Built the Web app in Next.js, mobile apps in React Native, and the backend API in a Golang server backed by a PostgreSQL database and Redis for caching and asynchronous task processing.",
         "Recruited and mentored a team of 8 individuals with varying experience levels, from interns to senior engineers, while fostering a culture of accountability, best practices, and code quality through code review.",
+        "Led customer interviews during early product development, uncovering a critical gap between our technically optimised solution and what end users actually needed. Drove a product rethink that prioritised simplicity and clarity over technical precision.",
       ],
     },
     {
@@ -180,7 +186,7 @@ export const PORTFOLIO_DATA = {
         "Led the redesign and modernization of the storefront architecture, improving navigation and visuals, and refactored legacy code to modern standards. Set up a component design system using React.js and styled-components.",
         "Migrated from a single-page application to a SSR (server-side rendered) React architecture, reducing load times by 30% and implementing SEO strategies that increased organic search traffic by at least 20%.",
         "Drove the adoption of engineering best practices, including code reviews, CI/CD, and automated testing. Introduced TypeScript to help reduce type issues and catch bugs early.",
-        "Owned and scaled critical commerce services, including payments microservices, API gateway, catalog management, CI/CD pipelines, and deployment scripts, enabling reliable scaling and faster release cycles.",
+        "Owned and scaled critical commerce services, including payments microservices, API gateway, and a Rails-based catalog management service with Sidekiq for async processing, CI/CD pipelines, and deployment scripts, enabling reliable scaling and faster release cycles.",
         "Mentored junior engineers on frontend and backend best practices, fostering a culture of code quality and continuous improvement.",
       ],
     },
@@ -198,66 +204,90 @@ export const PORTFOLIO_DATA = {
       ],
     },
     {
-      role: "Software Developer (Internship - Jan 2016 to Jun 2016)",
+      role: "Software Developer",
       company: "Webrino Business Software LLP",
       location: "Bangalore, India",
-      period: "Jan 2016 - Oct 2017",
+      period: "June 2016 - Oct 2017",
       description: [
         "Built core features for a cloud-based omnichannel, multicurrency ERP web and mobile application serving global SMBs and enterprises.",
         "Improved user experience across the ERP platform, including major enhancements to the RFQ (Request for Quotation) flow, Inventory & SKU management for easier viewing and updates, and shipping label generation with printable formats to streamline fulfillment operations and vendor-buyer interactions.",
         "Collaborated with the accounting team to design and implement the ERP's complete accounting system, integrating invoicing, ledgers, and financial reporting.",
         "Developed the GST tax module when GST was introduced, ensuring accurate compliance and seamless integration into existing financial workflows.",
         "Constructed a mobile application for the ERP platform using the Ionic Framework, ensuring seamless access to ERP functionalities on mobile devices.",
+        "Built an internal superadmin dashboard using Ruby on Rails for customer management and admin functions, and wrote end-to-end tests using RSpec to ensure ERP reliability.",
+      ],
+    },
+    {
+      role: "Software Developer Intern",
+      company: "Webrino Business Software LLP",
+      location: "Bangalore, India",
+      period: "Jan 2016 - June 2016",
+      description: [
+        "Interned on a cloud-based omnichannel ERP platform, contributing to frontend and backend features while learning production development workflows.",
       ],
     },
   ],
   projects: [
     {
+      title: "astro-quill",
+      desc: "Astro integration that ships a markdown content editing studio at /studio with AI-assisted editing and GitHub PR-based publishing workflow.",
+      tech: ["Astro", "TypeScript", "AI SDK", "GitHub API"],
+      github: "https://github.com/VinitSarvade/astro-quill",
+      icon: LuSparkles,
+    },
+    {
       title: "Smart Buy",
-      desc: "AI-powered product analysis. Provides an in-depth analysis of products, pros and cons, and recommendations.",
+      desc: "Takes the guesswork out of online shopping by using AI to analyze products, surface pros and cons, and give personalized recommendations.",
+      tech: ["Next.js", "TypeScript", "AI SDK", "TailwindCSS"],
       github: "https://github.com/VinitSarvade/smart-buy",
       href: "https://smart-buy.vinit.dev",
       icon: LuSparkles,
     },
     {
       title: "eStore",
-      desc: "E-commerce storefront built with Next.js, React, and TypeScript.",
+      desc: "Full-featured e-commerce storefront with cart, checkout, and product catalog — built to explore SSR patterns and data fetching strategies in Next.js.",
+      tech: ["Next.js", "React", "TypeScript", "TailwindCSS"],
       github: "https://github.com/VinitSarvade/estore",
       href: "https://estore-next.vinit.dev",
     },
     {
-      title: "HN Clone",
-      desc: "A Hacker News clone built with React featuring server-side rendering.",
-      github: "https://github.com/VinitSarvade/hn-clone-react",
-      href: "https://hn-clone.up.railway.app",
-    },
-    {
       title: "Multitrack Audio Player",
-      desc: "A multitrack audio player for playing and mixing multiple audio tracks.",
+      desc: "Lets you layer and mix multiple audio tracks in the browser — useful for comparing stems or building simple mashups.",
+      tech: ["React", "Web Audio API", "TypeScript"],
       github: "https://github.com/VinitSarvade/multitrack-audio-player",
       href: "https://multitrack-audio-player.vercel.app",
     },
     {
       title: "Wildlife Explorer",
-      desc: "An interactive wildlife exploration app for discovering and learning about animals.",
+      desc: "Interactive app for discovering wildlife species with rich media and filtering — a fun way to explore biodiversity data.",
+      tech: ["React", "TypeScript", "REST API"],
       github: "https://github.com/VinitSarvade/wildlife-explorer",
       href: "https://wildlife-explorer.vercel.app",
     },
     {
       title: "Neo Calendar",
-      desc: "A sleek, modern calendar component built with TypeScript.",
+      desc: "Lightweight, zero-dependency calendar component with smooth animations — designed to drop into any project without framework lock-in.",
+      tech: ["TypeScript", "CSS", "Web Components"],
       github: "https://github.com/VinitSarvade/neo-calendar",
       href: "https://vinitsarvade.github.io/neo-calendar/",
     },
     {
       title: "Clonebnb",
-      desc: "An Airbnb clone built with TypeScript.",
+      desc: "Airbnb-style rental listing app built with React Native — demonstrates navigation, image galleries, and booking flows on mobile.",
+      tech: ["React Native", "Expo", "TypeScript"],
       github: "https://github.com/VinitSarvade/clonebnb",
     },
     {
       title: "Expensify Clone",
-      desc: "An expense tracking app clone built with TypeScript.",
+      desc: "Mobile expense tracker with categorization and reporting — built to explore React Native form handling and local data persistence.",
+      tech: ["React Native", "Expo", "TypeScript"],
       github: "https://github.com/VinitSarvade/expensify-clone",
+    },
+    {
+      title: "HN Clone",
+      desc: "Hacker News reader with server-side rendering — fast initial loads with nested comment threads and real-time feed updates.",
+      tech: ["React", "TypeScript", "SSR"],
+      github: "https://github.com/VinitSarvade/hn-clone-react",
     },
   ],
 } as const;
@@ -271,6 +301,7 @@ export type Certificate = PortfolioData["certificates"][number];
 export type Project = {
   readonly title: string;
   readonly desc: string;
+  readonly tech: readonly string[];
   readonly github: string;
   readonly href?: string;
   readonly icon?: IconType;
