@@ -1,10 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "@fontsource-variable/bricolage-grotesque/opsz.css";
+@import "@fontsource-variable/figtree";
+@import "@fontsource-variable/jetbrains-mono";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-display: "Bricolage Grotesque Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Figtree Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -12,6 +19,7 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -30,137 +38,202 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Console palette */
+  --color-panel: var(--card);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--border);
+  --color-line-2: var(--line-2);
+  --color-text-2: var(--text-2);
+  --color-amber: var(--amber);
+  --color-amber-2: var(--amber-2);
+  --color-amber-ink: var(--amber-ink);
+  --color-amber-soft: var(--amber-soft);
+  --color-glow: var(--glow);
+  --color-ok: var(--ok);
 }
 
 :root {
+  color-scheme: light;
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.147 0.004 49.25);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.147 0.004 49.25);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.147 0.004 49.25);
-  --primary: oklch(0.216 0.006 56.043);
-  --primary-foreground: oklch(0.985 0.001 106.423);
-  --secondary: oklch(0.97 0.001 106.424);
-  --secondary-foreground: oklch(0.216 0.006 56.043);
-  --muted: oklch(0.97 0.001 106.424);
-  --muted-foreground: oklch(0.553 0.013 58.071);
-  --accent: oklch(0.97 0.001 106.424);
-  --accent-foreground: oklch(0.216 0.006 56.043);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.923 0.003 48.717);
-  --input: oklch(0.923 0.003 48.717);
-  --ring: oklch(0.709 0.01 56.259);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0.001 106.423);
-  --sidebar-foreground: oklch(0.147 0.004 49.25);
-  --sidebar-primary: oklch(0.216 0.006 56.043);
-  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-accent: oklch(0.97 0.001 106.424);
-  --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
-  --sidebar-border: oklch(0.923 0.003 48.717);
-  --sidebar-ring: oklch(0.709 0.01 56.259);
 
-  --expo-out: linear(
-    0 0%,
-    0.1684 2.66%,
-    0.3165 5.49%,
-    0.446 8.52%,
-    0.5581 11.78%,
-    0.6535 15.29%,
-    0.7341 19.11%,
-    0.8011 23.3%,
-    0.8557 27.93%,
-    0.8962 32.68%,
-    0.9283 38.01%,
-    0.9529 44.08%,
-    0.9711 51.14%,
-    0.9833 59.06%,
-    0.9915 68.74%,
-    1 100%
-  );
+  --background: #eef0f3;
+  --foreground: #151a20;
+  --card: #ffffff;
+  --card-foreground: #151a20;
+  --popover: #ffffff;
+  --popover-foreground: #151a20;
+  --primary: #b8730d;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f6f8;
+  --secondary-foreground: #151a20;
+  --muted: #f5f6f8;
+  --muted-foreground: #5f6874;
+  --accent: #f5f6f8;
+  --accent-foreground: #151a20;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #dadee4;
+  --input: #dadee4;
+  --ring: #b8730d;
+
+  --panel-2: #f5f6f8;
+  --line-2: #c4cad3;
+  --text-2: #3e4650;
+  --amber: #b8730d;
+  --amber-2: #d4652a;
+  --amber-ink: #ffffff;
+  --amber-soft: rgba(184, 115, 13, 0.12);
+  --glow: rgba(242, 169, 59, 0.3);
+  --ok: #3e9a4e;
 }
 
 .dark {
-  --background: oklch(0.147 0.004 49.25);
-  --foreground: oklch(0.985 0.001 106.423);
-  --card: oklch(0.216 0.006 56.043);
-  --card-foreground: oklch(0.985 0.001 106.423);
-  --popover: oklch(0.216 0.006 56.043);
-  --popover-foreground: oklch(0.985 0.001 106.423);
-  --primary: oklch(0.923 0.003 48.717);
-  --primary-foreground: oklch(0.216 0.006 56.043);
-  --secondary: oklch(0.268 0.007 34.298);
-  --secondary-foreground: oklch(0.985 0.001 106.423);
-  --muted: oklch(0.268 0.007 34.298);
-  --muted-foreground: oklch(0.709 0.01 56.259);
-  --accent: oklch(0.268 0.007 34.298);
-  --accent-foreground: oklch(0.985 0.001 106.423);
+  color-scheme: dark;
+
+  --background: #0f1216;
+  --foreground: #e6e8eb;
+  --card: #161a20;
+  --card-foreground: #e6e8eb;
+  --popover: #161a20;
+  --popover-foreground: #e6e8eb;
+  --primary: #f2a93b;
+  --primary-foreground: #1a1206;
+  --secondary: #1c2129;
+  --secondary-foreground: #e6e8eb;
+  --muted: #1c2129;
+  --muted-foreground: #8b94a1;
+  --accent: #1c2129;
+  --accent-foreground: #e6e8eb;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.553 0.013 58.071);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.216 0.006 56.043);
-  --sidebar-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-accent: oklch(0.268 0.007 34.298);
-  --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.553 0.013 58.071);
+  --border: #262c35;
+  --input: #333b47;
+  --ring: #f2a93b;
+
+  --panel-2: #1c2129;
+  --line-2: #333b47;
+  --text-2: #b4bbc6;
+  --amber: #f2a93b;
+  --amber-2: #e07a2f;
+  --amber-ink: #1a1206;
+  --amber-soft: rgba(242, 169, 59, 0.14);
+  --glow: rgba(242, 169, 59, 0.22);
+  --ok: #8ed081;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: radial-gradient(
+      color-mix(in oklab, var(--line-2) 70%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+    transition: background-color 0.3s, color 0.3s;
   }
 }
 
-:root {
-  --icon-color: var(--icon-light);
-}
-.dark {
-  --icon-color: var(--icon-dark);
-}
-
-@utility animate-fade-in-up {
-  animation: fade-in-up 0.4s ease-out both;
-  will-change: transform, opacity;
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0.1;
-    transform: translateY(10px);
+@layer components {
+  /* Brand icons that need a different colour per theme */
+  .skill-icon {
+    color: var(--icon-light);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .dark .skill-icon {
+    color: var(--icon-dark, var(--icon-light));
+  }
+
+  /* Top bar: active section underline */
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 2px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s;
+  }
+  .nav-link.active {
+    color: var(--amber);
+  }
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  /* Experience: vertical rail that draws in as the role scrolls into view */
+  .rail::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 0;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(var(--amber), transparent);
+    transform-origin: top;
+  }
+}
+
+/* Motion. Everything is visible without JS or when reduced motion is set. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Reveal uses an animation, not a transition, so it never overrides an element's own hover transitions. */
+  .js .rv:not(.in) {
+    opacity: 0;
+  }
+  .js .rv.in {
+    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+  .hero-in {
+    animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: var(--d, 0s);
+  }
+  .hero-word {
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(0.08s + var(--i, 0) * 0.09s);
+  }
+  .hero-glow {
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes drift {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(-90px, 50px);
+    }
+  }
+  @supports (animation-timeline: view()) {
+    .rail::before {
+      animation: draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+    @keyframes draw {
+      from {
+        transform: scaleY(0);
+      }
+      to {
+        transform: scaleY(1);
+      }
+    }
   }
 }

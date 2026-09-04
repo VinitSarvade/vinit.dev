@@ -1,10 +1,219 @@
-import type { IconType } from "react-icons";
-import { LuGithub, LuLinkedin, LuMail, LuSparkles } from "react-icons/lu";
+import { LuGithub, LuLinkedin, LuMail } from "react-icons/lu";
+
+export type ExperienceEntry = {
+  readonly role: string;
+  readonly company: string;
+  readonly location: string;
+  readonly period: string;
+  /** One line on what the company or product is. */
+  readonly summary?: string;
+  readonly description: readonly string[];
+  /** Short footnote rendered under the bullets, e.g. how the role started. */
+  readonly note?: string;
+};
+
+export type Project = {
+  readonly title: string;
+  readonly desc: string;
+  readonly tech: readonly string[];
+  readonly github: string;
+  readonly href?: string;
+  /** Marks AI-powered projects with a small badge. */
+  readonly ai?: boolean;
+};
+
+const EXPERIENCE: readonly ExperienceEntry[] = [
+  {
+    role: "Staff Engineer",
+    company: "Zacco",
+    location: "Bangalore, India",
+    period: "Apr 2026 - Present",
+    summary: "Zacco is one of Europe's leading intellectual property firms. I work on IPview, its portal for managing patents, trademarks, designs, and domains across many countries.",
+    description: [
+      "Leading the modernisation of the IPview codebase while we keep shipping new features, using Go on the back end and HTMX with Alpine.js on the front end.",
+      "Driving AI adoption across the team: working with colleagues to find, test, and share ways of using AI tooling to deliver faster.",
+    ],
+  },
+  {
+    role: "Senior Software Engineer",
+    company: "CambAI",
+    location: "Remote",
+    period: "Oct 2025 - Jan 2026",
+    summary: "CambAI makes Camb Studio, a platform for dubbing and subtitling video with AI.",
+    description: [
+      "Built features for the studio in React, Node.js, and TypeScript, working closely with the multimedia editing tools.",
+      "Improved audio and video sync in the subtitle editor, which cut the time spent in dubbing and subtitling workflows by around 15 to 20%.",
+      "Rebuilt the editor's state management. A mix of Zustand, React Context, and duplicated components became one composition pattern with a single Zustand store, removing a lot of unnecessary re-renders.",
+      "Built screen translation for Savante, an Electron desktop app: draw a box anywhere on screen, OCR reads the text, and the transformed version appears instantly. Also moved the app to a current Electron build with electron-vite.",
+    ],
+  },
+  {
+    role: "Principal Engineer",
+    company: "Unibloom",
+    location: "Remote",
+    period: "Jan 2024 - Sept 2025",
+    summary: "Unibloom builds climate action planning software that helps companies plan and track carbon reductions.",
+    description: [
+      "Led development of the planning tool, where users set sustainability targets, link initiatives to them, see progress, and get the remaining gap calculated for them.",
+      "Designed the simulation engine and took it from a rule-based model to an AI-driven one that suggests the most effective actions for a particular business.",
+      "Built a retrieval-based chatbot that answers general sustainability questions and questions about the user's own targets and initiatives.",
+      "Moved authentication to Supabase Auth, and wrote a type-safe wrapper for Next.js API routes that reduced runtime errors across the codebase.",
+      "Worked day to day with climate specialists to turn their models and data into features people could use.",
+    ],
+  },
+  {
+    role: "Senior Frontend Engineer",
+    company: "Voicemod",
+    location: "Remote",
+    period: "June 2023 - Dec 2023",
+    summary: "Voicemod is a real-time voice changer for gamers and streamers.",
+    description: [
+      "Built the gift-a-subscription feature, which opened a new revenue stream.",
+      "Hardened the authentication service behind login and session management.",
+      "Helped move the Voice Store from a legacy codebase to Nuxt.js. SEO work during the migration brought 8% more organic traffic within two weeks.",
+    ],
+  },
+  {
+    role: "Founding Engineer",
+    company: "Flurn",
+    location: "Bangalore, India",
+    period: "June 2021 - Feb 2023",
+    summary: "Flurn was an early-stage startup where I was the founding engineer.",
+    description: [
+      "Chose and set up the initial stack, built the MVP, and kept iterating on user feedback until we found product-market fit a few months in.",
+      "Built the web app in Next.js, the mobile apps in React Native, and the API in Go on PostgreSQL, with Redis for caching and background jobs.",
+      "Hired and mentored a team of eight, from interns to senior engineers, and made code review the backbone of how we worked.",
+      "Ran early customer interviews. They showed a gap between our technically neat solution and what people actually needed, so we reworked the product around simplicity.",
+    ],
+  },
+  {
+    role: "Senior Software Engineer",
+    company: "Betterworks",
+    location: "Remote",
+    period: "Aug 2020 - May 2021",
+    summary: "Betterworks Engage is an employee engagement platform: surveys, feedback, and analytics on top of them.",
+    description: [
+      "Built interactive analytics dashboards in React that turned raw survey data into something managers could act on.",
+      "Built the employee lifecycle analysis, which shows favourability scores from onboarding through to exit.",
+      "Added caching at the API layer, cutting API latency by 60% and database load by close to 40%.",
+      "Maintained the React Native app for surveys and quizzes, and fixed a run of notification delivery bugs.",
+    ],
+  },
+  {
+    role: "Senior Software Engineer",
+    company: "Furlenco",
+    location: "Bangalore, India",
+    period: "April 2018 - July 2020",
+    summary: "Furlenco runs a high-traffic e-commerce storefront. I worked across the storefront and the services behind it.",
+    description: [
+      "Led the storefront redesign and set up a component design system in React and styled-components.",
+      "Migrated the storefront from a single-page app to server-rendered React, which cut load times by 30%. SEO work on top brought at least 20% more organic search traffic.",
+      "Introduced TypeScript, code review, CI/CD, and automated testing to the team.",
+      "Owned the payments microservices, the API gateway, and a Rails catalog service with Sidekiq, along with their pipelines and deployment scripts.",
+      "Mentored junior engineers on both front-end and back-end work.",
+    ],
+  },
+  {
+    role: "Software Engineer",
+    company: "HolidayIQ",
+    location: "Bangalore, India",
+    period: "Nov 2017 - April 2018",
+    summary: "HolidayIQ is a travel reviews and planning site.",
+    description: [
+      "Built web interfaces for International Destinations, the community platform, and the Video Stories microsite.",
+      "Helped migrate the International Destinations microsite to React.",
+      "Built campaign landing pages and HTML emails with the design and marketing teams.",
+      "Shipped more than five production features in React, lifting cross-platform user interactions by 25%.",
+    ],
+  },
+  {
+    role: "Software Developer",
+    company: "Webrino Business Software LLP",
+    location: "Bangalore, India",
+    period: "Jan 2016 - Oct 2017",
+    summary: "Webrino builds a cloud ERP for small and mid-sized businesses: omnichannel, multi-currency, on web and mobile.",
+    description: [
+      "Built core features across the ERP, including the request-for-quotation flow, inventory and SKU management, and printable shipping labels.",
+      "Worked with the accounting team to build the ERP's accounting system: invoicing, ledgers, and financial reporting. Added the GST tax module when GST was introduced in India.",
+      "Built the mobile app with Ionic, an internal admin dashboard in Rails, and end-to-end tests in RSpec.",
+    ],
+    note: "I started here as an intern in January 2016 and went full-time six months later.",
+  },
+];
+
+const PROJECTS: readonly Project[] = [
+  {
+    title: "astro-quill",
+    desc: "An Astro integration that adds a content editing studio at /studio, with AI-assisted editing and publishing through GitHub pull requests.",
+    tech: ["Astro", "TypeScript", "AI SDK", "GitHub API"],
+    github: "https://github.com/VinitSarvade/astro-quill",
+    ai: true,
+  },
+  {
+    title: "Smart Buy",
+    desc: "Uses AI to analyse a product, lay out the pros and cons, and suggest whether it fits what you need.",
+    tech: ["Next.js", "TypeScript", "AI SDK", "TailwindCSS"],
+    github: "https://github.com/VinitSarvade/smart-buy",
+    href: "https://smart-buy.vinit.dev",
+    ai: true,
+  },
+  {
+    title: "eStore",
+    desc: "A complete storefront with catalog, cart, and checkout. Built to explore server rendering and data fetching in Next.js.",
+    tech: ["Next.js", "React", "TypeScript", "TailwindCSS"],
+    github: "https://github.com/VinitSarvade/estore",
+    href: "https://estore-next.vinit.dev",
+  },
+  {
+    title: "Multitrack Audio Player",
+    desc: "Layer and mix several audio tracks in the browser. Handy for comparing stems or putting together a quick mashup.",
+    tech: ["React", "Web Audio API", "TypeScript"],
+    github: "https://github.com/VinitSarvade/multitrack-audio-player",
+    href: "https://multitrack-audio-player.vercel.app",
+  },
+  {
+    title: "Wildlife Explorer",
+    desc: "Browse wildlife species with photos, video, and filters. A small, enjoyable way into biodiversity data.",
+    tech: ["React", "TypeScript", "REST API"],
+    github: "https://github.com/VinitSarvade/wildlife-explorer",
+    href: "https://wildlife-explorer.vercel.app",
+  },
+  {
+    title: "Neo Calendar",
+    desc: "A small calendar component with no dependencies and smooth animations. Drops into any project, whatever the framework.",
+    tech: ["TypeScript", "CSS", "Web Components"],
+    github: "https://github.com/VinitSarvade/neo-calendar",
+    href: "https://vinitsarvade.github.io/neo-calendar/",
+  },
+  {
+    title: "Clonebnb",
+    desc: "An Airbnb-style listings app in React Native, covering navigation, image galleries, and booking flows.",
+    tech: ["React Native", "Expo", "TypeScript"],
+    github: "https://github.com/VinitSarvade/clonebnb",
+  },
+  {
+    title: "Expensify Clone",
+    desc: "A mobile expense tracker with categories and reports. Built to learn form handling and local storage in React Native.",
+    tech: ["React Native", "Expo", "TypeScript"],
+    github: "https://github.com/VinitSarvade/expensify-clone",
+  },
+  {
+    title: "HN Clone",
+    desc: "A server-rendered Hacker News reader with nested comment threads and a feed that updates live.",
+    tech: ["React", "TypeScript", "SSR"],
+    github: "https://github.com/VinitSarvade/hn-clone-react",
+  },
+];
 
 export const PORTFOLIO_DATA = {
   profile: {
     name: "Vinit Sarvade",
-    role: "Fullstack Engineer | AI Tools",
+    role: "Full-stack engineer in Bangalore",
+    /** `{{years}}` is replaced with the computed years of experience. */
+    tagline: "I build fast, dependable products for web and mobile, end to end.",
+    /** Phrase inside the tagline to set in the accent colour. */
+    taglineHighlight: "end to end",
+    availability: "Open to remote roles",
     socials: [
       {
         name: "GitHub",
@@ -18,10 +227,16 @@ export const PORTFOLIO_DATA = {
       },
       { name: "Email", icon: LuMail, url: "mailto:vinit.sarvade.08@gmail.com" },
     ],
+    resume: "/Vinit Sarvade - Resume.pdf",
   },
   contact: {
     website: "vinit.dev",
     location: "Bangalore, India",
+    timezone: "UTC+5:30",
+    email: "vinit.sarvade.08@gmail.com",
+    headline: "Want to work together?",
+    blurb:
+      "I'm open to remote roles and interesting contract work. Email is the quickest way to reach me, and I reply promptly.",
   },
   skills: [
     {
@@ -30,8 +245,8 @@ export const PORTFOLIO_DATA = {
         "HTML & CSS", "CSS-in-JS", "TailwindCSS", "SASS/SCSS",
         "React.js", "Next.js", "Tanstack Start", "AngularJS", "Angular",
         "Vue", "React Query", "Redux", "styled-components", "Zustand",
-        "Shadcn components", "Astro", "SSR (Server Side Rendering)",
-        "WebSockets", "Vite", "Webpack", "CDN",
+        "Shadcn components", "Astro", "HTMX", "Alpine.js",
+        "SSR (Server Side Rendering)", "WebSockets", "Vite", "Webpack", "CDN",
       ],
     },
     {
@@ -109,204 +324,52 @@ export const PORTFOLIO_DATA = {
       image: "/images/certificates/linkedin-k8s.jpeg"
     },
   ],
+  /** `{{years}}` is replaced with the computed years of experience. The first paragraph is also the hero lead. */
   about: [
-    "I'm a full-stack engineer with over 9 years of experience building production-grade web applications across e-commerce, SaaS, climate tech, and multimedia. I've been a founding engineer, a principal engineer, and everything in between.",
-    "I specialise in React, Next.js, and TypeScript on the frontend, and Golang, Node.js, and Ruby on Rails on the backend. I've built and shipped AI-powered features in production, including LLM-driven workflows, simulation engines, OCR-based tools, and conversational assistants using AI SDKs and vector databases.",
-    "I care about the craft. I've refactored messy codebases, migrated legacy architectures, built design systems from scratch, and led and mentored teams of engineers. I believe good engineering culture is as important as good code.",
+    "I'm a staff engineer with {{years}} years of experience building web and mobile products, most recently at Zacco, where I lead the modernisation of IPview and the adoption of AI across the engineering team. Earlier I was principal engineer at Unibloom and the founding engineer at Flurn. I care as much about how software is built as about what gets built. In practice that has meant untangling legacy codebases, leading migrations, establishing design systems, and hiring and mentoring engineers. A healthy engineering culture is, to me, part of the job.",
+    "My work spans the whole stack: TypeScript, React, and Next.js on the front end; Go, Node.js, and Rails on the back end; React Native on mobile. Over the past two years much of it has involved AI in production, from retrieval-based assistants to simulation engines, along with the infrastructure that keeps them reliable.",
+    "At Unibloom that meant designing a simulation engine that grew from a rule-based model into an AI-driven one, and a retrieval-based assistant over each customer's own plan. At Flurn it meant choosing the stack, shipping the MVP, and hiring the team of eight that took it to product-market fit.",
   ],
-  experience: [
+  pillars: [
     {
-      role: "Senior Software Engineer",
-      company: "CambAI",
-      location: "Remote",
-      period: "Oct 2025 - Jan 2026",
-      description: [
-        "Developed and shipped feature enhancements for the Camb Studio platform using React, NodeJS, and TypeScript, ensuring compatibility with high-traffic workflows and seamless integration with multimedia editing tools.",
-        "Enhanced video and audio synchronization within the subtitle editor by applying efficient state management and responsive design principles to deliver a smoother user experience and reduce 10% time spent in dubbing and subtitling workflows.",
-        "Refactored the studio editor architecture from a fragmented mix of Zustand, React Context, and duplicated components into a structured component composition pattern with Zustand as the single source of truth, eliminating unnecessary re-renders across multiple components and significantly improving maintainability and state predictability.",
-        "Built an OCR-based screen translation feature for Savante, a desktop app built with Electron — users draw a box on screen, OCR captures the content, and a text transformation is applied instantly. Also upgraded the app from an older Electron version to a modern build with standardized tooling using electron-vite.",
-      ],
+      title: "End to end",
+      text: "I'm comfortable owning a feature from the database to the screen, on web and on mobile.",
     },
     {
-      role: "Principal Engineer",
-      company: "Unibloom",
-      location: "Remote",
-      period: "Jan 2024 - Sept 2025",
-      description: [
-        "Led the development of the climate action planning tool, enabling users to plan and track carbon footprint reductions efficiently across targets and initiatives.",
-        "Built the core target tracking system, enabling users to define sustainability targets, link initiatives against them, visualise progress, and automatically calculate gaps.",
-        "Architected and evolved the simulation modelling engine, starting with a rule-based model and upgrading it to an AI-powered simulation that helps businesses identify the most effective solutions for their specific sustainability context.",
-        "Built a RAG-powered chatbot that answers questions about sustainability topics as well as queries about the user's own targets and initiatives, delivering instant and contextually relevant insights.",
-        "Migrated authentication to Supabase Auth, improving security and simplifying the auth layer across the platform.",
-        "Built a typesafe routing wrapper for Next.js API routes, reducing runtime errors and improving developer experience across the codebase.",
-        "Designed and developed advanced software in collaboration with climate specialists, using AI and data analytics to deliver rapid, actionable insights for sustainability planning initiatives.",
-      ],
+      title: "AI in real products",
+      text: "Assistants, simulations, and tooling that customers use every day, not just demos.",
     },
     {
-      role: "Senior Frontend Engineer",
-      company: "Voicemod",
-      location: "Remote",
-      period: "June 2023 - Dec 2023",
-      description: [
-        "Built the Gift a Subscription feature, enabling users to purchase and send Voicemod subscriptions to friends, driving a new revenue stream.",
-        "Hardened the authentication microservice, improving security and reliability for the platform's login and session management flows.",
-        "Supported the migration of the Voice Store from a legacy codebase to Nuxt.js, implementing SEO improvements that resulted in 8% more organic traffic within the first 2 weeks post migration.",
-      ],
-    },
-    {
-      role: "Founding Engineer",
-      company: "Flurn",
-      location: "Bangalore, India",
-      period: "June 2021 - Feb 2023",
-      description: [
-        "Designed and implemented the initial technology stack, enabling rapid MVP development and scalable architecture.",
-        "Developed MVP and led iterative releases based on user feedback, achieving product-market fit within a few months.",
-        "Built the Web app in Next.js, mobile apps in React Native, and the backend API in a Golang server backed by a PostgreSQL database and Redis for caching and asynchronous task processing.",
-        "Recruited and mentored a team of 8 individuals with varying experience levels, from interns to senior engineers, while fostering a culture of accountability, best practices, and code quality through code review.",
-        "Led customer interviews during early product development, uncovering a critical gap between our technically optimised solution and what end users actually needed. Drove a product rethink that prioritised simplicity and clarity over technical precision.",
-      ],
-    },
-    {
-      role: "Senior Software Engineer",
-      company: "Betterworks",
-      location: "Remote",
-      period: "Aug 2020 - May 2021",
-      description: [
-        "Betterworks Engage — An employee engagement platform for companies, a tool for employee engagement surveys, gathering feedback, and providing insightful analytics over the data collected.",
-        "Crafted interactive analytics visualizations and delivered new data-driven features using React and data visualization libraries by transforming raw feedback data into actionable dashboards.",
-        "Built the Employee lifecycle analysis, where one can view the favorability scores across the employee lifecycle from onboarding to separation.",
-        "Improved the application performance by implementing data caching at the API, which reduced the API latency by 60% and the database load by close to 40%.",
-        "Maintained and enhanced React Native mobile application for employee surveys and quizzes.",
-        "Improved the notification deliveries by squashing several bugs and using up-to-date dependencies.",
-      ],
-    },
-    {
-      role: "Senior Software Engineer",
-      company: "Furlenco",
-      location: "Bangalore, India",
-      period: "April 2018 - July 2020",
-      description: [
-        "Architected and maintained scalable back-end microservices and developed frontend interfaces for a high-traffic e-commerce storefront, collaborating closely with designers, PMs, and QA to deliver features on schedule.",
-        "Led the redesign and modernization of the storefront architecture, improving navigation and visuals, and refactored legacy code to modern standards. Set up a component design system using React.js and styled-components.",
-        "Migrated from a single-page application to a SSR (server-side rendered) React architecture, reducing load times by 30% and implementing SEO strategies that increased organic search traffic by at least 20%.",
-        "Drove the adoption of engineering best practices, including code reviews, CI/CD, and automated testing. Introduced TypeScript to help reduce type issues and catch bugs early.",
-        "Owned and scaled critical commerce services, including payments microservices, API gateway, and a Rails-based catalog management service with Sidekiq for async processing, CI/CD pipelines, and deployment scripts, enabling reliable scaling and faster release cycles.",
-        "Mentored junior engineers on frontend and backend best practices, fostering a culture of code quality and continuous improvement.",
-      ],
-    },
-    {
-      role: "Software Engineer",
-      company: "HolidayIQ",
-      location: "Bangalore, India",
-      period: "Nov 2017 - April 2018",
-      description: [
-        "Developed web interfaces for multiple products, including HolidayIQ International Destinations, Community platform, and Video Stories microsite, delivering features that improved user engagement and content discovery.",
-        "Contributed to the migration of the International Destinations microsite to React, gaining hands-on experience with modern frontend frameworks and improving site maintainability.",
-        "Designed and built campaign landing pages and HTML marketing emails, collaborating with designers and marketers to ensure brand consistency and responsive design across devices.",
-        "Grew rapidly in full-stack skills, actively learning modern JavaScript, responsive design techniques, and cross-browser optimizations while shipping production features.",
-        "Engineered and launched 5+ production features using ReactJS over a 12-month period, increasing cross-platform user interactions by 25%.",
-      ],
-    },
-    {
-      role: "Software Developer",
-      company: "Webrino Business Software LLP",
-      location: "Bangalore, India",
-      period: "June 2016 - Oct 2017",
-      description: [
-        "Built core features for a cloud-based omnichannel, multicurrency ERP web and mobile application serving global SMBs and enterprises.",
-        "Improved user experience across the ERP platform, including major enhancements to the RFQ (Request for Quotation) flow, Inventory & SKU management for easier viewing and updates, and shipping label generation with printable formats to streamline fulfillment operations and vendor-buyer interactions.",
-        "Collaborated with the accounting team to design and implement the ERP's complete accounting system, integrating invoicing, ledgers, and financial reporting.",
-        "Developed the GST tax module when GST was introduced, ensuring accurate compliance and seamless integration into existing financial workflows.",
-        "Constructed a mobile application for the ERP platform using the Ionic Framework, ensuring seamless access to ERP functionalities on mobile devices.",
-        "Built an internal superadmin dashboard using Ruby on Rails for customer management and admin functions, and wrote end-to-end tests using RSpec to ensure ERP reliability.",
-      ],
-    },
-    {
-      role: "Software Developer Intern",
-      company: "Webrino Business Software LLP",
-      location: "Bangalore, India",
-      period: "Jan 2016 - June 2016",
-      description: [
-        "Interned on a cloud-based omnichannel ERP platform, contributing to frontend and backend features while learning production development workflows.",
-      ],
+      title: "Teams",
+      text: "I've hired, mentored, and led engineers, and I enjoy that part of the job.",
     },
   ],
-  projects: [
+  aiWork: [
     {
-      title: "astro-quill",
-      desc: "Astro integration that ships a markdown content editing studio at /studio with AI-assisted editing and GitHub PR-based publishing workflow.",
-      tech: ["Astro", "TypeScript", "AI SDK", "GitHub API"],
-      github: "https://github.com/VinitSarvade/astro-quill",
-      icon: LuSparkles,
+      title: "Climate simulation engine",
+      text: "Started as a rule-based model and grew into an AI-driven simulation that suggests the most effective sustainability actions for a given business.",
+      meta: "Unibloom",
     },
     {
-      title: "Smart Buy",
-      desc: "Takes the guesswork out of online shopping by using AI to analyze products, surface pros and cons, and give personalized recommendations.",
-      tech: ["Next.js", "TypeScript", "AI SDK", "TailwindCSS"],
-      github: "https://github.com/VinitSarvade/smart-buy",
-      href: "https://smart-buy.vinit.dev",
-      icon: LuSparkles,
+      title: "An assistant that knows your plan",
+      text: "A retrieval-based chatbot that answers sustainability questions, including questions about the user's own targets and initiatives.",
+      meta: "Unibloom",
     },
     {
-      title: "eStore",
-      desc: "Full-featured e-commerce storefront with cart, checkout, and product catalog — built to explore SSR patterns and data fetching strategies in Next.js.",
-      tech: ["Next.js", "React", "TypeScript", "TailwindCSS"],
-      github: "https://github.com/VinitSarvade/estore",
-      href: "https://estore-next.vinit.dev",
-    },
-    {
-      title: "Multitrack Audio Player",
-      desc: "Lets you layer and mix multiple audio tracks in the browser — useful for comparing stems or building simple mashups.",
-      tech: ["React", "Web Audio API", "TypeScript"],
-      github: "https://github.com/VinitSarvade/multitrack-audio-player",
-      href: "https://multitrack-audio-player.vercel.app",
-    },
-    {
-      title: "Wildlife Explorer",
-      desc: "Interactive app for discovering wildlife species with rich media and filtering — a fun way to explore biodiversity data.",
-      tech: ["React", "TypeScript", "REST API"],
-      github: "https://github.com/VinitSarvade/wildlife-explorer",
-      href: "https://wildlife-explorer.vercel.app",
-    },
-    {
-      title: "Neo Calendar",
-      desc: "Lightweight, zero-dependency calendar component with smooth animations — designed to drop into any project without framework lock-in.",
-      tech: ["TypeScript", "CSS", "Web Components"],
-      github: "https://github.com/VinitSarvade/neo-calendar",
-      href: "https://vinitsarvade.github.io/neo-calendar/",
-    },
-    {
-      title: "Clonebnb",
-      desc: "Airbnb-style rental listing app built with React Native — demonstrates navigation, image galleries, and booking flows on mobile.",
-      tech: ["React Native", "Expo", "TypeScript"],
-      github: "https://github.com/VinitSarvade/clonebnb",
-    },
-    {
-      title: "Expensify Clone",
-      desc: "Mobile expense tracker with categorization and reporting — built to explore React Native form handling and local data persistence.",
-      tech: ["React Native", "Expo", "TypeScript"],
-      github: "https://github.com/VinitSarvade/expensify-clone",
-    },
-    {
-      title: "HN Clone",
-      desc: "Hacker News reader with server-side rendering — fast initial loads with nested comment threads and real-time feed updates.",
-      tech: ["React", "TypeScript", "SSR"],
-      github: "https://github.com/VinitSarvade/hn-clone-react",
+      title: "astro-quill and Smart Buy",
+      text: "Two side projects: an AI-assisted content studio for Astro sites, and a shopping assistant that weighs up products for you.",
+      meta: "Open source",
     },
   ],
+  experience: EXPERIENCE,
+  projects: PROJECTS,
 } as const;
 
 export type PortfolioData = typeof PORTFOLIO_DATA;
 export type Social = PortfolioData["profile"]["socials"][number];
 export type SkillGroup = PortfolioData["skills"][number];
 export type Education = PortfolioData["education"][number];
-export type Experience = PortfolioData["experience"][number];
+export type Experience = ExperienceEntry;
 export type Certificate = PortfolioData["certificates"][number];
-export type Project = {
-  readonly title: string;
-  readonly desc: string;
-  readonly tech: readonly string[];
-  readonly github: string;
-  readonly href?: string;
-  readonly icon?: IconType;
-};
+export type Pillar = PortfolioData["pillars"][number];
+export type AiWork = PortfolioData["aiWork"][number];

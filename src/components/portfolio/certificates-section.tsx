@@ -1,46 +1,39 @@
-import { LuExternalLink } from "react-icons/lu";
 import type { Certificate } from "./portfolio-data";
+import { Tile } from "./tile";
 
 interface CertificatesSectionProps {
   certificates: readonly Certificate[];
+  className?: string;
 }
 
-export function CertificatesSection({
-  certificates,
-}: CertificatesSectionProps) {
+export function CertificatesSection({ certificates, className }: CertificatesSectionProps) {
   return (
-    <div className="space-y-3">
-      <h2 className="text-xs font-mono font-medium uppercase tracking-wider text-muted-foreground">
-        Certificates & Workshops
-      </h2>
-      <div className="space-y-3">
-        {certificates.map((cert, index) => (
-          <a
-            key={index}
-            href={cert.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2.5 group"
-            aria-label={cert.title}
-          >
-            {cert.image && (
+    <Tile id="certificates" title="Certificates & workshops" className={className} index={4}>
+      <ul className="m-0 grid list-none grid-cols-2 gap-3 p-0 sm:grid-cols-3 lg:grid-cols-5">
+        {certificates.map((cert) => (
+          <li key={cert.title}>
+            <a
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col gap-2 no-underline"
+            >
               <img
                 src={cert.image}
-                alt={cert.title}
-                width={56}
-                height={32}
-                className="w-14 aspect-video rounded border border-border object-cover shrink-0"
+                alt=""
+                width={320}
+                height={200}
                 loading="lazy"
                 decoding="async"
+                className="aspect-[16/10] w-full rounded-md border border-line bg-panel-2 object-cover transition group-hover:-translate-y-0.5 group-hover:border-amber"
               />
-            )}
-            <span className="flex items-center gap-1.5 text-sm text-foreground group-hover:text-primary transition-colors">
-              <span className="group-hover:underline">{cert.title}</span>
-              <LuExternalLink className="size-3 shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
-            </span>
-          </a>
+              <span className="text-[12.5px] leading-[1.35] text-text-2 group-hover:text-foreground">
+                {cert.title}
+              </span>
+            </a>
+          </li>
         ))}
-      </div>
-    </div>
+      </ul>
+    </Tile>
   );
 }
