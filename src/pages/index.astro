@@ -1,6 +1,12 @@
 ---
 import '../styles/global.css';
 import { MyPortfolio } from '../components/my-portfolio';
+import { PORTFOLIO_DATA } from '../components/portfolio/portfolio-data';
+import { yearsOfExperience } from '../lib/experience';
+
+const years = yearsOfExperience(PORTFOLIO_DATA.experience);
+const current = PORTFOLIO_DATA.experience[0];
+const description = `Full-stack engineer with ${years}+ years of experience in React, Next.js, Node.js, and Golang. Building scalable web and mobile apps and AI-powered features across SaaS, e-commerce, and climate tech.`;
 ---
 
 <html lang="en">
@@ -8,7 +14,7 @@ import { MyPortfolio } from '../components/my-portfolio';
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="author" content="Vinit Sarvade" />
-    <meta name="description" content="Full-stack engineer with 9+ years of experience in React, Next.js, Node.js, and Golang. Building scalable web and mobile apps across SaaS, e-commerce, and climate tech." />
+    <meta name="description" content={description} />
     <meta name="keywords" content="Vinit Sarvade, Portfolio" />
     <link
       rel="apple-touch-icon"
@@ -31,12 +37,12 @@ import { MyPortfolio } from '../components/my-portfolio';
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vinit.dev" />
     <meta property="og:title" content="Vinit Sarvade — Fullstack Engineer" />
-    <meta property="og:description" content="Full-stack engineer with 9+ years of experience in React, Next.js, Node.js, and Golang. Building scalable web and mobile apps across SaaS, e-commerce, and climate tech." />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content="https://vinit.dev/favicon/android-chrome-512x512.png" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Vinit Sarvade — Fullstack Engineer" />
-    <meta name="twitter:description" content="Full-stack engineer with 9+ years of experience in React, Next.js, Node.js, and Golang. Building scalable web and mobile apps across SaaS, e-commerce, and climate tech." />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://vinit.dev/favicon/android-chrome-512x512.png" />
 
 		<title>Vinit Sarvade</title>
@@ -45,13 +51,14 @@ import { MyPortfolio } from '../components/my-portfolio';
 			"@type": "Person",
 			"name": "Vinit Sarvade",
 			"url": "https://vinit.dev",
-			"jobTitle": "Fullstack Engineer",
+			"jobTitle": current.role,
+			"worksFor": { "@type": "Organization", "name": current.company },
 			"sameAs": [
 				"https://github.com/VinitSarvade",
 				"https://www.linkedin.com/in/vinit-sarvade/"
 			],
 			"knowsAbout": [
-				"React", "Next.js", "TypeScript", "Node.js", "Golang",
+				"React", "Next.js", "TypeScript", "Node.js", "Golang", "HTMX", "Alpine.js",
 				"React Native", "Expo", "TailwindCSS", "Angular", "Vue",
 				"GraphQL", "PostgreSQL", "MongoDB", "Redis", "Docker", "Kubernetes", "AWS",
 				"AI Agents", "LangChain", "Microservices", "REST APIs", "CI/CD",
@@ -64,42 +71,42 @@ import { MyPortfolio } from '../components/my-portfolio';
 			}
 		})} />
 		<script is:inline>
+			document.documentElement.classList.add('js');
 			const t = localStorage.getItem('theme');
 			if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
 				document.documentElement.classList.add('dark');
 			}
 		</script>
 		<style is:inline>
-			::view-transition-group(root) {
-				animation-timing-function: var(--expo-out);
+			/* Theme switch: the new theme is revealed by a circle growing from the toggle.
+			   --vt-x / --vt-y / --vt-r are set on <html> by the toggle script before the transition starts. */
+			::view-transition-old(root) {
+				animation: none;
+				mix-blend-mode: normal;
+				z-index: 1;
 			}
 			::view-transition-new(root) {
-				mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>') top left / 0 no-repeat;
-				mask-origin: content-box;
-				animation: theme-reveal 1s;
-				animation-fill-mode: both;
-				transform-origin: top left;
-			}
-			::view-transition-old(root),
-			.dark::view-transition-old(root) {
-				animation: theme-reveal 1s;
-				animation-fill-mode: both;
-				transform-origin: top left;
-				z-index: -1;
+				mix-blend-mode: normal;
+				z-index: 2;
+				animation: theme-reveal 0.65s cubic-bezier(0.4, 0, 0.2, 1) both;
 			}
 			@keyframes theme-reveal {
-				to { mask-size: 350vmax; }
+				from {
+					clip-path: circle(0px at var(--vt-x, 100%) var(--vt-y, 0%));
+				}
+				to {
+					clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 100%) var(--vt-y, 0%));
+				}
 			}
 		</style>
 	</head>
 
 	<body>
-		<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:dark:bg-zinc-900 focus:text-sm focus:font-medium focus:rounded-md focus:shadow-lg focus:border focus:border-gray-200 focus:dark:border-zinc-700">Skip to content</a>
-		<main id="main-content" class="min-h-screen flex flex-col p-4">
-			<MyPortfolio />
-		</main>
+		<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-amber focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:font-medium focus:text-amber-ink focus:shadow-lg">Skip to content</a>
+		<div id="scroll-progress" aria-hidden="true" class="pointer-events-none fixed top-0 left-0 z-40 h-0.5 w-full origin-left scale-x-0 bg-amber"></div>
+		<MyPortfolio />
 		<script>
-			// Dark mode
+			// Theme toggle with a circular view-transition reveal.
 			const sun = document.getElementById('theme-icon-sun');
 			const moon = document.getElementById('theme-icon-moon');
 			function applyTheme(dark: boolean) {
@@ -110,43 +117,119 @@ import { MyPortfolio } from '../components/my-portfolio';
 			const stored = localStorage.getItem('theme');
 			applyTheme(stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
 
-			document.getElementById('theme-toggle')?.addEventListener('click', () => {
+			const toggle = document.getElementById('theme-toggle');
+			toggle?.addEventListener('click', () => {
 				const isDark = !document.documentElement.classList.contains('dark');
 				const switchTheme = () => {
 					localStorage.setItem('theme', isDark ? 'dark' : 'light');
 					applyTheme(isDark);
 				};
-				if (!document.startViewTransition) {
+				if (!document.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 					switchTheme();
 					return;
 				}
-				document.startViewTransition(switchTheme);
+				// Grow a circle from the centre of the toggle until it covers the farthest corner.
+				const rect = toggle.getBoundingClientRect();
+				const x = rect.left + rect.width / 2;
+				const y = rect.top + rect.height / 2;
+				const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+				const root = document.documentElement.style;
+				root.setProperty('--vt-x', `${x}px`);
+				root.setProperty('--vt-y', `${y}px`);
+				root.setProperty('--vt-r', `${Math.ceil(radius)}px`);
+				const transition = document.startViewTransition(switchTheme);
+				// Belt and braces: engines that ignore the CSS keyframes on the pseudo-element still get the same circle.
+				transition.ready.then(() => {
+					try {
+						document.documentElement.animate(
+							{ clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${Math.ceil(radius)}px at ${x}px ${y}px)`] },
+							{ duration: 650, easing: 'cubic-bezier(0.4, 0, 0.2, 1)', pseudoElement: '::view-transition-new(root)' },
+						);
+					} catch {
+						/* CSS animation already handles it */
+					}
+				}).catch(() => {});
 			});
 
-			// Experience toggle
-			const toggle = document.getElementById('experience-toggle');
-			const el = document.getElementById('experience-collapsible');
-			const gradient = document.getElementById('experience-gradient');
-			const text = document.getElementById('experience-toggle-text');
-			const icon = document.getElementById('experience-toggle-icon');
-			let expanded = false;
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-			toggle?.addEventListener('click', () => {
-				if (!el) return;
-				expanded = !expanded;
-				toggle.setAttribute('aria-expanded', String(expanded));
-				if (expanded) {
-					el.style.maxHeight = el.scrollHeight + 'px';
-					gradient?.classList.add('opacity-0');
-					icon?.classList.add('rotate-180');
-					if (text) text.textContent = 'Show less';
-				} else {
-					el.style.maxHeight = '';
-					gradient?.classList.remove('opacity-0');
-					icon?.classList.remove('rotate-180');
-					if (text) text.textContent = 'Show more';
+			// Scroll progress bar.
+			const bar = document.getElementById('scroll-progress');
+			function paintProgress() {
+				const root = document.documentElement;
+				const max = root.scrollHeight - root.clientHeight;
+				if (bar) bar.style.transform = `scaleX(${max > 0 ? root.scrollTop / max : 0})`;
+			}
+			paintProgress();
+			window.addEventListener('scroll', paintProgress, { passive: true });
+
+			// Reveal tiles as they scroll into view.
+			const revealable = document.querySelectorAll<HTMLElement>('.rv');
+			if (reduceMotion || !('IntersectionObserver' in window)) {
+				revealable.forEach((el) => el.classList.add('in'));
+			} else {
+				const revealer = new IntersectionObserver(
+					(entries) => {
+						for (const entry of entries) {
+							if (!entry.isIntersecting) continue;
+							entry.target.classList.add('in');
+							revealer.unobserve(entry.target);
+						}
+					},
+					{ rootMargin: '0px 0px -10% 0px', threshold: 0 },
+				);
+				revealable.forEach((el) => revealer.observe(el));
+			}
+
+			// Experience log: exactly one role is expanded at a time; open/close animate.
+			const jobs = Array.from(document.querySelectorAll<HTMLDetailsElement>('#experience details'));
+			let jobAnimating = false;
+			function setJob(job: HTMLDetailsElement, open: boolean): Promise<void> {
+				const body = job.querySelector<HTMLElement>('[data-body]');
+				job.dataset.state = open ? 'open' : 'closed';
+				if (!body || reduceMotion) {
+					job.open = open;
+					return Promise.resolve();
 				}
-			});
+				if (open) job.open = true;
+				const height = `${body.scrollHeight}px`;
+				const animation = body.animate(
+					{ height: open ? ['0px', height] : [height, '0px'], opacity: open ? [0, 1] : [1, 0] },
+					{ duration: open ? 340 : 260, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)' },
+				);
+				return animation.finished.then(() => {
+					if (!open) job.open = false;
+				});
+			}
+			for (const job of jobs) {
+				job.querySelector('summary')?.addEventListener('click', (event) => {
+					event.preventDefault();
+					if (jobAnimating || job.open) return; // the open one stays open
+					jobAnimating = true;
+					const others = jobs.filter((j) => j !== job && j.open).map((j) => setJob(j, false));
+					Promise.all([setJob(job, true), ...others]).finally(() => {
+						jobAnimating = false;
+					});
+				});
+			}
+
+			// Highlight the nav link for the section in view.
+			const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-nav]'));
+			const sections = navLinks
+				.map((link) => document.querySelector<HTMLElement>(link.getAttribute('href') ?? ''))
+				.filter((el): el is HTMLElement => el !== null);
+			const spy = new IntersectionObserver(
+				(entries) => {
+					for (const entry of entries) {
+						if (!entry.isIntersecting) continue;
+						for (const link of navLinks) {
+							link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+						}
+					}
+				},
+				{ rootMargin: '-40% 0px -55% 0px' },
+			);
+			sections.forEach((section) => spy.observe(section));
 		</script>
 	</body>
 </html>

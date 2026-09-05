@@ -13,6 +13,8 @@ import {
   SiStyledcomponents,
   SiShadcnui,
   SiAstro,
+  SiHtmx,
+  SiAlpinedotjs,
   SiExpo,
   SiIonic,
   SiTypescript,
@@ -64,6 +66,8 @@ const skillIconMap: Record<string, SkillEntry> = {
   "styled-components": { icon: SiStyledcomponents, color: "#DB7093" },
   "Shadcn components": { icon: SiShadcnui, color: "#000000", darkColor: "#FFFFFF" },
   Astro: { icon: SiAstro, color: "#FF5D01" },
+  HTMX: { icon: SiHtmx, color: "#3366CC", darkColor: "#7FA3E8" },
+  "Alpine.js": { icon: SiAlpinedotjs, color: "#5A9AA8", darkColor: "#8BC0D0" },
   "React Native": { icon: SiReact, color: "#61DAFB" },
   Expo: { icon: SiExpo, color: "#000020", darkColor: "#FFFFFF" },
   Ionic: { icon: SiIonic, color: "#3880FF" },
@@ -115,10 +119,11 @@ export function SkillIcon({ skill, category }: { skill: string; category: string
   if (!entry) return null;
   const { icon: Icon, color, darkColor } = entry;
   if (darkColor) {
+    // `.skill-icon` reads these variables per theme (see global.css).
     return (
       <Icon
-        className="size-3 shrink-0"
-        style={{ "--icon-light": color, "--icon-dark": darkColor, color: "var(--icon-color)" } as React.CSSProperties}
+        className="skill-icon size-3 shrink-0"
+        style={{ "--icon-light": color, "--icon-dark": darkColor } as React.CSSProperties}
       />
     );
   }

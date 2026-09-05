@@ -1,47 +1,73 @@
-import { Separator } from "@/components/ui/separator";
+import { fillYears, yearsOfExperience } from "@/lib/experience";
 import { AboutSection } from "./portfolio/about-section";
+import { AiWorkSection } from "./portfolio/ai-work-section";
 import { CertificatesSection } from "./portfolio/certificates-section";
+import { ContactSection } from "./portfolio/contact-section";
 import { EducationSection } from "./portfolio/education-section";
 import { ExperienceSection } from "./portfolio/experience-section";
-import { ProfileHeader } from "./portfolio/profile-header";
-import { ProjectsSection } from "./portfolio/projects-section";
+import { Hero } from "./portfolio/hero";
 import { PORTFOLIO_DATA } from "./portfolio/portfolio-data";
+import { ProjectsSection } from "./portfolio/projects-section";
+import { SiteFooter } from "./portfolio/site-footer";
 import { SkillsSection } from "./portfolio/skills-section";
-import { ThemeToggle } from "./portfolio/theme-toggle";
+import { TopBar } from "./portfolio/top-bar";
 
 export function MyPortfolio() {
+  const { profile, contact, experience } = PORTFOLIO_DATA;
+  const years = yearsOfExperience(experience);
+  const about = PORTFOLIO_DATA.about.map((p) => fillYears(p, years));
+  const linkedin = profile.socials.find((s) => s.name === "LinkedIn")!.url;
+
   return (
-    <div className="animate-fade-in-up bg-background border rounded-lg overflow-clip">
-      <div className="grid grid-cols-1 md:grid-cols-12">
-        {/* Sidebar */}
-        <nav aria-label="Sidebar navigation" className="md:col-span-4 bg-muted/50 border-r">
-          <div className="md:sticky md:top-4 p-5 md:p-8 flex flex-col gap-6 md:gap-8 relative">
-            <div className="absolute top-5 right-5 md:top-8 md:right-8 z-10">
-              <ThemeToggle />
-            </div>
+    <>
+      <TopBar />
+      <main id="main-content" className="mx-auto max-w-[1180px] px-5">
+        <div className="grid gap-3.5 pt-7 pb-10">
+          <Hero
+            name={profile.name}
+            role={profile.role}
+            tagline={fillYears(profile.tagline, years)}
+            taglineHighlight={profile.taglineHighlight}
+            lead={about[0]}
+            socials={profile.socials}
+            resume={profile.resume}
+            current={experience[0]}
+            availability={profile.availability}
+            location={contact.location}
+            timezone={contact.timezone}
+          />
 
-            <ProfileHeader
-              name={PORTFOLIO_DATA.profile.name}
-              role={PORTFOLIO_DATA.profile.role}
-              location={PORTFOLIO_DATA.contact.location}
-              socials={PORTFOLIO_DATA.profile.socials}
+          <div className="grid grid-cols-12 gap-3.5">
+            <AboutSection
+              about={about.slice(1)}
+              pillars={PORTFOLIO_DATA.pillars}
+              className="col-span-12 lg:col-span-7"
             />
-
-            <Separator />
-
-            <SkillsSection skills={PORTFOLIO_DATA.skills} />
-            <EducationSection education={PORTFOLIO_DATA.education} />
-            <CertificatesSection certificates={PORTFOLIO_DATA.certificates} />
+            <AiWorkSection items={PORTFOLIO_DATA.aiWork} className="col-span-12 lg:col-span-5" />
           </div>
-        </nav>
 
-        {/* Main Content */}
-        <div className="md:col-span-8 p-5 md:p-10 space-y-8 md:space-y-10 bg-background">
-          <AboutSection about={PORTFOLIO_DATA.about} />
-          <ExperienceSection experience={PORTFOLIO_DATA.experience} />
+          <SkillsSection skills={PORTFOLIO_DATA.skills} />
+
+          <div className="grid grid-cols-12 gap-3.5">
+            <EducationSection education={PORTFOLIO_DATA.education} className="col-span-12 lg:col-span-4" />
+            <CertificatesSection
+              certificates={PORTFOLIO_DATA.certificates}
+              className="col-span-12 lg:col-span-8"
+            />
+          </div>
+
+          <ExperienceSection experience={experience} />
           <ProjectsSection projects={PORTFOLIO_DATA.projects} />
+
+          <ContactSection
+            headline={contact.headline}
+            blurb={contact.blurb}
+            email={contact.email}
+            linkedin={linkedin}
+          />
         </div>
-      </div>
-    </div>
+      </main>
+      <SiteFooter name={profile.name} location={contact.location} socials={profile.socials} />
+    </>
   );
 }

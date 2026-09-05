@@ -10,15 +10,17 @@ My personal portfolio website built with Astro, React, and TailwindCSS.
 - **React 19** - Interactive UI components
 - **TailwindCSS v4** - Styling
 - **Radix UI / shadcn/ui** - Accessible component primitives
-- **MDX** - Markdown with JSX support
+- **Fontsource** - Self-hosted variable fonts
 - **Bun** - Package manager & runtime
 
 ## Features
 
-- Dark/light theme with view transition animations
-- Responsive two-column layout
-- Collapsible experience timeline
-- Certificates section with image thumbnails
+- Dark/light theme with a circular view-transition reveal
+- Bento layout: full-width hero with a glass "current role" panel, paired tiles, and a masonry skills grid
+- Scroll-driven motion: staggered tile reveals, an active-section nav underline, a scroll progress bar, and a timeline rail that draws in (respects `prefers-reduced-motion`)
+- Collapsible experience log with a footnote for roles that started as internships
+- Years of experience computed from the experience data at build time
+- Self-hosted variable fonts (Bricolage Grotesque, Figtree, JetBrains Mono) via Fontsource
 - JSON-LD structured data for SEO
 - Content Security Policy headers
 - Accessibility-first (skip links, ARIA labels, semantic HTML)
@@ -56,13 +58,16 @@ src/
 1. **Fork & clone** the repo
 
 2. **Update personal info** in `src/components/portfolio/portfolio-data.ts` — this single file contains all the content:
-   - `profile` — name, role, and social links
-   - `skills` — skill categories and items
-   - `experience` — work history entries
+   - `profile` — name, role, tagline, availability, social links, résumé path
+   - `contact` — location, timezone, email, and the contact banner copy
+   - `skills` — skill categories and items (icons live in `skill-icons.tsx`)
+   - `experience` — work history, newest first; the first entry is shown as the current role. Add a `note` for footnotes such as an internship
    - `education` — degrees and institutions
    - `certificates` — certifications with image URLs
-   - `projects` — personal/side projects
-   - `about` — bio text
+   - `projects` — personal/side projects (`ai: true` adds an AI badge)
+   - `about` — bio paragraphs; the first one doubles as the hero lead
+   - `pillars` and `aiWork` — the three About highlights and the "AI features shipped" list
+   - `{{years}}` in any copy is replaced with the years computed from `experience`
 
 3. **Update metadata** in `src/pages/index.astro`:
    - Page title, meta description, author
@@ -72,7 +77,7 @@ src/
 
 4. **Update headers** in `public/_headers` if deploying to Cloudflare Pages or similar — adjust the CSP `img-src` directive if you reference external image domains
 
-5. **Customize theme** in `src/styles/global.css` — color variables are defined using OKLCH and can be swapped out to match your preference
+5. **Customize theme** in `src/styles/global.css` — light and dark palettes are plain hex tokens on `:root` and `.dark`; the amber accent is `--amber`. Fonts are imported from Fontsource at the top of the file
 
 ## Deployment
 
